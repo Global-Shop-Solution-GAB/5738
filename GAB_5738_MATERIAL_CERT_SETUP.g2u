@@ -1,0 +1,720 @@
+﻿Program.Sub.ScreenSU.Start
+Gui.frmLot..Create
+Gui.frmLot..Size(8805,6975)
+Gui.frmLot..MinX(8805)
+Gui.frmLot..MinY(6975)
+Gui.frmLot..Position(0,0)
+Gui.frmLot..BackColor(-2147483633)
+Gui.frmLot..MousePointer(0)
+Gui.frmLot..Caption("Material Cert Setup")
+Gui.frmLot..Event(UnLoad,frmLot_UnLoad)
+Gui.frmLot.picGSSLogo.Create(PictureBox)
+Gui.frmLot.picGSSLogo.Size(4125,960)
+Gui.frmLot.picGSSLogo.Position(2100,45)
+Gui.frmLot.tabLot.Create(Tab)
+Gui.frmLot.tabLot.Size(8625,5580)
+Gui.frmLot.tabLot.Position(30,1080)
+Gui.frmLot.tabLot.Event(Click,tabLot_Click)
+Gui.frmLot.tabLot.Tabs(2)
+Gui.frmLot.tabLot.SetTab(0)
+Gui.frmLot.tabLot.Caption("Customer")
+Gui.frmLot.tabLot.SetTab(1)
+Gui.frmLot.tabLot.Caption("Part")
+Gui.frmLot.GsGCPart.Create(GsGridControl)
+Gui.frmLot.GsGCPart.Size(8490,3840)
+Gui.frmLot.GsGCPart.Position(0,1350)
+Gui.frmLot.GsGCPart.Parent("tabLot",1)
+Gui.frmLot.txtGrp2.Create(TextBox,"",True,4920,300,0,585,975,False,0,"Arial",8,-2147483643,1)
+Gui.frmLot.txtGrp2.Parent("tabLot",1)
+Gui.frmLot.txtGrp2.Locked(True)
+Gui.frmLot.txtGrp.Create(TextBox,"",True,465,300,0,45,975,False,0,"Arial",8,-2147483643,1)
+Gui.frmLot.txtGrp.Parent("tabLot",1)
+Gui.frmLot.txtGrp.Locked(True)
+Gui.frmLot.txtPath.Create(TextBox,"",True,5460,300,0,45,345,True,0,"Arial",8,-2147483643,1)
+Gui.frmLot.txtPath.Parent("tabLot",1)
+Gui.frmLot.lblPath.Create(Label,"Default Path:",True,1080,255,0,45,135,True,0,"Arial",8,-2147483633,0)
+Gui.frmLot.lblPath.Parent("tabLot",1)
+Gui.frmLot.lblGrp.Create(Label,"Default Doc Group:",True,1545,255,0,45,765,True,0,"Arial",8,-2147483633,0)
+Gui.frmLot.lblGrp.Parent("tabLot",1)
+Gui.frmLot.cmdPath.Create(Button)
+Gui.frmLot.cmdPath.Size(345,345)
+Gui.frmLot.cmdPath.Position(5565,330)
+Gui.frmLot.cmdPath.Parent("tabLot",1)
+Gui.frmLot.cmdPath.Caption("^")
+Gui.frmLot.cmdPath.Event(Click,PathSelection)
+Gui.frmLot.cmdGrp.Create(Button)
+Gui.frmLot.cmdGrp.Size(345,345)
+Gui.frmLot.cmdGrp.Position(5565,960)
+Gui.frmLot.cmdGrp.Parent("tabLot",1)
+Gui.frmLot.cmdGrp.Caption("^")
+Gui.frmLot.cmdGrp.Event(Click,cmdGrp_Click)
+Gui.frmLot.GsGCCust.Create(GsGridControl)
+Gui.frmLot.GsGCCust.Enabled(False)
+Gui.frmLot.GsGCCust.Size(8490,3840)
+Gui.frmLot.GsGCCust.Position(0,1350)
+Gui.frmLot.GsGCCust.Parent("tabLot",0)
+Gui.frmLot.GsGCCust.Event(RowCellClick,GsGCCust_RowCellClick)
+Gui.frmLot.optCustom.Create(Option)
+Gui.frmLot.optCustom.Size(930,255)
+Gui.frmLot.optCustom.Position(15,1020)
+Gui.frmLot.optCustom.Parent("tabLot",0)
+Gui.frmLot.optCustom.Caption("Custom")
+Gui.frmLot.optCustom.Event(Click,RadioButtonsC)
+Gui.frmLot.optAll.Create(Option)
+Gui.frmLot.optAll.Size(930,255)
+Gui.frmLot.optAll.Position(15,45)
+Gui.frmLot.optAll.Parent("tabLot",0)
+Gui.frmLot.optAll.Caption("All")
+Gui.frmLot.optAll.Event(Click,RadioButtonsC)
+Gui.frmLot.lblPathC.Create(Label,"Default Path:",True,1080,255,0,60,375,True,0,"Arial",8,-2147483633,0)
+Gui.frmLot.lblPathC.Parent("tabLot",0)
+Gui.frmLot.txtPathC.Create(TextBox,"",True,4995,300,0,45,585,False,0,"Arial",8,-2147483643,1)
+Gui.frmLot.txtPathC.Parent("tabLot",0)
+Gui.frmLot.cmdPathC.Create(Button)
+Gui.frmLot.cmdPathC.Enabled(False)
+Gui.frmLot.cmdPathC.Size(345,345)
+Gui.frmLot.cmdPathC.Position(5085,570)
+Gui.frmLot.cmdPathC.Parent("tabLot",0)
+Gui.frmLot.cmdPathC.Caption("^")
+Gui.frmLot.cmdPathC.Event(Click,PathSelection)
+Gui.frmLot.cmdSave.Create(Button)
+Gui.frmLot.cmdSave.Size(765,375)
+Gui.frmLot.cmdSave.Position(7890,960)
+Gui.frmLot.cmdSave.Caption("Save")
+Gui.frmLot.cmdSave.Event(Click,cmdSavePart_Click)
+Gui.frmLot.optCust.Create(Option)
+Gui.frmLot.optCust.Size(1080,255)
+Gui.frmLot.optCust.Position(105,45)
+Gui.frmLot.optCust.Caption("Customer")
+Gui.frmLot.optCust.Event(Click,RadioButtons)
+Gui.frmLot.optPart.Create(Option)
+Gui.frmLot.optPart.Size(1080,255)
+Gui.frmLot.optPart.Position(105,315)
+Gui.frmLot.optPart.Caption("Part")
+Gui.frmLot.optPart.Event(Click,RadioButtons)
+Gui.frmLot.cmdAdd.Create(Button)
+Gui.frmLot.cmdAdd.Size(765,375)
+Gui.frmLot.cmdAdd.Position(7095,960)
+Gui.frmLot.cmdAdd.Caption("Add")
+Gui.frmLot.cmdAdd.Event(Click,cmdAdd_Click)
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+
+	V.Local.sIcon.Declare
+	V.Local.sGssLogo.Declare
+
+	F.Intrinsic.String.Build("{0}\GSS2.ico",V.Caller.GasDir,v.Local.sIcon)
+	F.Intrinsic.String.Build("{0}\GAB_GSS_Logo_Green_Dash.png",V.Caller.GasDir,V.Local.sGssLogo)
+	Gui.frmLot..Icon(V.Local.sIcon)
+	Gui.frmLot.picGSSLogo.Picture(V.Local.sGssLogo)
+
+	Gui.frmLot.tabLot.SetTab(0)
+	F.Intrinsic.Control.CallSub(SetAnchors)
+
+	F.ODBC.Connection!con.OpenConnection(V.Ambient.PDSN,V.Ambient.PUser,V.Ambient.PPass)
+	Gui.frmLot..Show
+	F.Intrinsic.Control.CallSub(SetTabAnchors)
+	F.Intrinsic.Control.CallSub(checktables)
+	F.Intrinsic.Control.CallSub(checkvalues)
+	F.Intrinsic.Control.CallSub(loaddtcust)
+	F.Intrinsic.Control.CallSub(loaddtpart)
+
+	Gui.frmLot..Show
+
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: GAB_5738_Mat_Cert_Setup.g2u{0}{0}Subroutine: {1}{0}Error Occurred {2} with description {3}.",V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndTry
+Program.Sub.Main.End
+
+Program.Sub.frmLot_UnLoad.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+
+	F.ODBC.Connection!con.Close
+	F.Intrinsic.Control.End 
+
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: GAB_5738_Mat_Cert_Setup.g2u{0}{0}Subroutine: {1}{0}Error Occurred {2} with description {3}.",V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndTry
+Program.Sub.frmLot_UnLoad.End
+
+Program.Sub.SetAnchors.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+
+	Gui.frmLot.picGSSLogo.Anchor(1)
+	Gui.frmLot.optCust.Anchor(5)
+	Gui.frmLot.optPart.Anchor(5)
+	Gui.frmLot.cmdAdd.Anchor(9)
+	gui.frmLot.cmdSave.Anchor(9)
+	Gui.frmLot.tabLot.Anchor(15)
+
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: GAB_5738_Mat_Cert_Setup.g2u{0}{0}Subroutine: {1}{0}Error Occurred {2} with description {3}.",V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndTry
+Program.Sub.SetAnchors.End
+
+Program.Sub.SetTabAnchors.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+
+	Gui.frmLot.GsGCCust.Anchor(15)
+	Gui.frmLot.GsGCPart.Anchor(15)
+
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: GAB_5738_Mat_Cert_Setup.g2u{0}{0}Subroutine: {1}{0}Error Occurred {2} with description {3}.",V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndTry
+Program.Sub.SetTabAnchors.End
+
+Program.Sub.CheckTables.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+
+	V.Local.bExists.Declare
+	V.Local.sOption.Declare
+	V.Local.sSql.Declare
+
+	F.ODBC.Connection!con.TableExists("GAB_5738_LOT_INFO",V.Local.bExists)
+	F.Intrinsic.Control.If(V.Local.bExists,=,False)
+		'GAB_LOT_LBHS to GAB_5738_LOT_LBHS
+		F.ODBC.Connection!con.TableExists("GAB_LOT_LBHS",V.Local.bExists)
+		F.Intrinsic.Control.If(V.Local.bExists)
+			F.ODBC.Connection!con.TableExists("GAB_5738_LOT_LBHS",V.Local.bExists)
+			F.Intrinsic.Control.If(V.Local.bExists,=,False)
+				F.ODBC.Connection!con.Execute("CREATE TABLE GAB_5738_LOT_LBHS(TERMINAL CHAR(3) NOT NULL ,ID CHAR(3) NOT NULL ,ORDER_REC CHAR(4),PART CHAR(20) NOT NULL ,LOCATION CHAR(2),LOT CHAR(15),BIN CHAR(6),HEAT CHAR(15),SERIAL CHAR(30),JOB CHAR(6),SUFFIX CHAR(3),CODE_TRANSACTION CHAR(3),SEQUENCE CHAR(6),CHK CHAR(1));")
+			F.Intrinsic.Control.EndIf
+			F.ODBC.Connection!con.Execute("INSERT INTO GAB_5738_LOT_LBHS SELECT * FROM GAB_LOT_LBHS;")
+		F.Intrinsic.Control.Else
+			F.ODBC.Connection!con.TableExists("GAB_5738_LOT_LBHS",V.Local.bExists)
+			F.Intrinsic.Control.If(V.Local.bExists,=,False)
+				F.ODBC.Connection!con.Execute("CREATE TABLE GAB_5738_LOT_LBHS(TERMINAL CHAR(3) NOT NULL ,ID CHAR(3) NOT NULL ,ORDER_REC CHAR(4),PART CHAR(20) NOT NULL ,LOCATION CHAR(2),LOT CHAR(15),BIN CHAR(6),HEAT CHAR(15),SERIAL CHAR(30),JOB CHAR(6),SUFFIX CHAR(3),CODE_TRANSACTION CHAR(3),SEQUENCE CHAR(6),CHK CHAR(1));")
+			F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.EndIf
+		'GAB_LOT_INFO to GAB_5738_LOT_INFO
+		F.ODBC.Connection!con.TableExists("GAB_LOT_INFO",V.Local.bExists)
+		F.Intrinsic.Control.If(V.Local.bExists)
+			F.ODBC.Connection!con.TableExists("GAB_5738_LOT_INFO",V.Local.bExists)
+			F.Intrinsic.Control.If(V.Local.bExists,=,False)
+				F.ODBC.Connection!con.Execute("CREATE TABLE GAB_5738_LOT_INFO(PCK_NO CHAR(7),ORDER_NO CHAR(7),ORDER_SHIP_NO CHAR(4),ORDER_REC CHAR(4),PART CHAR(20),LOT CHAR(15),BIN CHAR(6),HEAT CHAR(15),SERIAL CHAR(30),JOB CHAR(6),SUFFIX CHAR(3),LOC CHAR(2),STAT CHAR(1),SEQUENCE CHAR(6));")
+				F.ODBC.Connection!con.Execute("CREATE NOT MODIFIABLE INDEX GAB_LOT_INFOSK00 ON GAB_5738_LOT_INFO(PCK_NO,ORDER_NO,ORDER_REC,ORDER_SHIP_NO);")
+			F.Intrinsic.Control.EndIf
+			F.ODBC.Connection!con.Execute("INSERT INTO GAB_5738_LOT_INFO SELECT * FROM GAB_LOT_INFO;")
+		F.Intrinsic.Control.Else
+			F.ODBC.Connection!con.TableExists("GAB_5738_LOT_INFO",V.Local.bExists)
+			F.Intrinsic.Control.If(V.Local.bExists,=,False)
+				F.ODBC.Connection!con.Execute("CREATE TABLE GAB_5738_LOT_INFO(PCK_NO CHAR(7),ORDER_NO CHAR(7),ORDER_SHIP_NO CHAR(4),ORDER_REC CHAR(4),PART CHAR(20),LOT CHAR(15),BIN CHAR(6),HEAT CHAR(15),SERIAL CHAR(30),JOB CHAR(6),SUFFIX CHAR(3),LOC CHAR(2),STAT CHAR(1),SEQUENCE CHAR(6));")
+				F.ODBC.Connection!con.Execute("CREATE NOT MODIFIABLE INDEX GAB_LOT_INFOSK00 ON GAB_5738_LOT_INFO(PCK_NO,ORDER_NO,ORDER_REC,ORDER_SHIP_NO);")
+			F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.EndIf
+		'GAB_LOT_PART to GAB_5738_LOT_PART
+		F.ODBC.Connection!con.TableExists("GAB_LOT_PART",V.Local.bExists)
+		F.Intrinsic.Control.If(V.Local.bExists)
+			F.ODBC.Connection!con.TableExists("GAB_5738_LOT_PART",V.Local.bExists)
+			F.Intrinsic.Control.If(V.Local.bExists,=,False)
+				F.ODBC.Connection!con.Execute("CREATE TABLE GAB_5738_LOT_PART(PART CHAR(20) NOT NULL ,PATH CHAR(250),PRIMARY KEY (PART));")
+			F.Intrinsic.Control.EndIf
+			F.ODBC.Connection!con.Execute("INSERT INTO GAB_5738_LOT_PART SELECT * FROM GAB_LOT_PART;")
+			V.Local.sOption.Set("P")
+		F.Intrinsic.Control.Else
+			F.ODBC.Connection!con.TableExists("GAB_5738_LOT_PART",V.Local.bExists)
+			F.Intrinsic.Control.If(V.Local.bExists,=,False)
+				F.ODBC.Connection!con.Execute("CREATE TABLE GAB_5738_LOT_PART(PART CHAR(20) NOT NULL ,PATH CHAR(250),PRIMARY KEY (PART));")
+			F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.EndIf
+		'GAB_LOT_CUST to GAB_5738_LOT_CUST
+		F.ODBC.Connection!con.TableExists("GAB_LOT_CUST",V.Local.bExists)
+		F.Intrinsic.Control.If(V.Local.bExists)
+			F.ODBC.Connection!con.TableExists("GAB_5738_LOT_CUST",V.Local.bExists)
+			F.Intrinsic.Control.If(V.Local.bExists,=,False)
+				F.ODBC.Connection!con.Execute("CREATE TABLE GAB_5738_LOT_CUST(CUST CHAR(6), NAME CHAR(30), PATH CHAR(250));")
+				F.ODBC.Connection!con.Execute("CREATE UNIQUE INDEX GAB_LOT_CUSTK00 ON GAB_5738_LOT_CUST(CUST);")
+			F.Intrinsic.Control.EndIf
+			F.ODBC.Connection!con.Execute("INSERT INTO GAB_5738_LOT_CUST SELECT * FROM GAB_LOT_CUST;")
+			V.Local.sOption.Set("C")
+		F.Intrinsic.Control.Else
+			F.ODBC.Connection!con.TableExists("GAB_5738_LOT_CUST",V.Local.bExists)
+			F.Intrinsic.Control.If(V.Local.bExists,=,False)
+				F.ODBC.Connection!con.Execute("CREATE TABLE GAB_5738_LOT_CUST(CUST CHAR(6), NAME CHAR(30), PATH CHAR(250));")
+				F.ODBC.Connection!con.Execute("CREATE UNIQUE INDEX GAB_LOT_CUSTK00 ON GAB_5738_LOT_CUST(CUST);")
+			F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.Else
+		'GAB_5738_LOT_LBHS
+		F.ODBC.Connection!con.TableExists("GAB_5738_LOT_LBHS",V.Local.bExists)
+		F.Intrinsic.Control.If(V.Local.bExists,=,False)
+			F.ODBC.Connection!con.Execute("CREATE TABLE GAB_5738_LOT_LBHS(TERMINAL CHAR(3) NOT NULL ,ID CHAR(3) NOT NULL ,ORDER_REC CHAR(4),PART CHAR(20) NOT NULL ,LOCATION CHAR(2),LOT CHAR(15),BIN CHAR(6),HEAT CHAR(15),SERIAL CHAR(30),JOB CHAR(6),SUFFIX CHAR(3),CODE_TRANSACTION CHAR(3),SEQUENCE CHAR(6),CHK CHAR(1));")
+		F.Intrinsic.Control.EndIf
+		'GAB_5738_LOT_INFO
+		F.ODBC.Connection!con.TableExists("GAB_5738_LOT_INFO",V.Local.bExists)
+		F.Intrinsic.Control.If(V.Local.bExists,=,False)
+			F.ODBC.Connection!con.Execute("CREATE TABLE GAB_5738_LOT_INFO(PCK_NO CHAR(7),ORDER_NO CHAR(7),ORDER_SHIP_NO CHAR(4),ORDER_REC CHAR(4),PART CHAR(20),LOT CHAR(15),BIN CHAR(6),HEAT CHAR(15),SERIAL CHAR(30),JOB CHAR(6),SUFFIX CHAR(3),LOC CHAR(2),STAT CHAR(1),SEQUENCE CHAR(6));")
+			F.ODBC.Connection!con.Execute("CREATE NOT MODIFIABLE INDEX GAB_LOT_INFOSK00 ON GAB_5738_LOT_INFO(PCK_NO,ORDER_NO,ORDER_REC,ORDER_SHIP_NO);")
+		F.Intrinsic.Control.EndIf
+		'GAB_5738_LOT_PART
+		F.ODBC.Connection!con.TableExists("GAB_5738_LOT_PART",V.Local.bExists)
+		F.Intrinsic.Control.If(V.Local.bExists,=,False)
+			F.ODBC.Connection!con.Execute("CREATE TABLE GAB_5738_LOT_PART(PART CHAR(20) NOT NULL ,PATH CHAR(250),PRIMARY KEY (PART));")
+		F.Intrinsic.Control.EndIf
+		'GAB_5738_LOT_CUST
+		F.ODBC.Connection!con.TableExists("GAB_5738_LOT_CUST",V.Local.bExists)
+		F.Intrinsic.Control.If(V.Local.bExists,=,False)
+			F.ODBC.Connection!con.Execute("CREATE TABLE GAB_5738_LOT_CUST(CUST CHAR(6), NAME CHAR(30), PATH CHAR(250));")
+			F.ODBC.Connection!con.Execute("CREATE UNIQUE INDEX GAB_LOT_CUSTK00 ON GAB_5738_LOT_CUST(CUST);")
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.Control.If(V.Local.sOption,=,"C")
+		F.ODBC.Connection!con.Execute("Insert Into Gab_5738_Lot_Part Values('000000OPT','C');")
+	F.Intrinsic.Control.ElseIf(V.Local.sOption,=,"P")
+		F.ODBC.Connection!con.Execute("Insert Into Gab_5738_Lot_Part Values('000000OPT','P');")
+	F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: GAB_5738_Mat_Cert_Setup.g2u{0}{0}Subroutine: {1}{0}Error Occurred {2} with description {3}.",V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndTry
+Program.Sub.CheckTables.End
+
+Program.Sub.CheckValues.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+
+	V.Local.sSQL.Declare
+	V.Local.sOption.Declare
+	V.Local.sPartPath.Declare
+	V.Local.sPartGroup.Declare
+
+	'Check Option for Customer, Part or Both
+	F.ODBC.Connection!con.ExecuteAndReturn("Select Path From Gab_5738_Lot_Part Where Part = '000000OPT';",V.Local.sOption)
+
+	F.Intrinsic.Control.SelectCase(V.Local.sOption.Trim)
+		F.Intrinsic.Control.Case("C")
+			Gui.frmLot.optCust.Value(True)
+		F.Intrinsic.Control.Case("P")
+			Gui.frmLot.optPart.Value(True)
+	F.Intrinsic.Control.EndSelect
+
+	F.Intrinsic.Control.CallSub(radiobuttons)
+
+	F.Intrinsic.Control.If(V.Local.sOption,<>,"")
+		'Check Part default path
+		F.ODBC.Connection!con.ExecuteAndReturn("Select Path From Gab_5738_Lot_Part Where Part = '000000';",V.Local.sPartPath)
+		Gui.frmLot.txtPath.Text(V.Local.sPartPath.Trim)
+
+		'Check Part default group
+		F.ODBC.Connection!con.ExecuteAndReturn("Select Path From Gab_5738_Lot_Part Where Part = '000000GR';",V.Local.sPartGroup)
+		Gui.frmLot.txtGrp.Text(V.Local.sPartGroup.Trim)
+		F.Intrinsic.Control.If(V.Local.sPartGroup.Trim,<>,"")
+			F.Intrinsic.String.Build("Select Grp_Name From Atg_Doc_Grp Where Grp_ID = {0};",V.Local.sPartGroup,V.Local.sSQL)
+			F.ODBC.Connection!con.ExecuteAndReturn(V.Local.sSQL,V.Local.sPartGroup)
+			Gui.frmLot.txtGrp2.Text(V.Local.sPartGroup.Trim)
+		F.Intrinsic.Control.EndIf
+
+		'Check Customer Tab options
+		F.ODBC.Connection!con.ExecuteAndReturn("Select Name,Path From Gab_5738_Lot_Cust Where Cust = '000000';",V.Local.sOption)
+		F.Intrinsic.String.Split(V.Local.sOption,"*!*",V.Local.sOption)
+		F.Intrinsic.Control.SelectCase(V.Local.sOption(0).Trim)
+			F.Intrinsic.Control.Case("A")
+				Gui.frmLot.optAll.Value(True)
+			F.Intrinsic.Control.Case("C")
+				Gui.frmLot.optCustom.Value(True)
+		F.Intrinsic.Control.EndSelect
+		Gui.frmLot.txtPathC.Text(V.Local.sOption(1).Trim)
+		F.Intrinsic.Control.CallSub(radiobuttonsC)
+		F.Intrinsic.Control.CallSub(tablot_click)
+	F.Intrinsic.Control.Else
+		F.ODBC.Connection!con.Execute("Insert Into Gab_5738_Lot_Part Values('000000OPT','');")
+		F.ODBC.Connection!con.Execute("Insert Into Gab_5738_Lot_Part Values('000000','');")
+		F.ODBC.Connection!con.Execute("Insert Into Gab_5738_Lot_Part Values('000000GR','');")
+		F.ODBC.Connection!con.Execute("Insert Into Gab_5738_Lot_Cust Values('000000','','');")
+		Gui.frmLot.tabLot.Enabled(False)
+	F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: GAB_5738_Mat_Cert_Setup.g2u{0}{0}Subroutine: {1}{0}Error Occurred {2} with description {3}.",V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndTry
+Program.Sub.CheckValues.End
+
+Program.Sub.LoadDtCust.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+
+	F.Intrinsic.Control.If(V.DataTable.dtCust.Exists)
+		F.Data.DataTable.Close("dtCust")
+	F.Intrinsic.Control.EndIf
+
+	F.Data.DataTable.CreateFromSQL("dtCust","con","Select RTrim(Cust) As Cust,RTrim(Name) As Name,RTrim(Path) As Path From Gab_5738_Lot_Cust Where Cust Not In ('000000') Order By Cust;",True)
+	F.Data.DataTable.AddColumn("dtCust","...",String,"...")
+
+	F.Intrinsic.Control.CallSub(loadgvcust)
+
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: GAB_5738_Mat_Cert_Setup.g2u{0}{0}Subroutine: {1}{0}Error Occurred {2} with description {3}.",V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndTry
+Program.Sub.LoadDtCust.End
+
+Program.Sub.LoadGvCust.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+
+	Gui.frmLot.GsGCCust.AddGridviewFromDatatable("gvCust","dtCust")
+	Gui.frmLot.GsGCCust.SetGridviewProperty("gvCust","AllowDeleteRows",True)
+	Gui.frmLot.GsGCCust.SetGridviewProperty("gvCust","EnableAppearanceOddRow",True)
+
+	Gui.frmLot.GsGCCust.SetColumnProperty("gvCust","...","ShowCaption",False)
+
+	Gui.frmLot.GsGCCust.SetColumnProperty("gvCust","Cust","Caption","Customer")
+	Gui.frmLot.GsGCCust.SetColumnProperty("gvCust","Name","Caption","Name")
+	Gui.frmLot.GsGCCust.SetColumnProperty("gvCust","Path","Caption","Path")
+
+	Gui.frmLot.GsGCCust.SetColumnProperty("gvCust","Cust","AllowEdit",False)
+	Gui.frmLot.GsGCCust.SetColumnProperty("gvCust","Name","AllowEdit",False)
+	Gui.frmLot.GsGCCust.SetColumnProperty("gvCust","Path","AllowEdit",True)
+	Gui.frmLot.GsGCCust.SetColumnProperty("gvCust","...","AllowEdit",False)
+
+	Gui.frmLot.GsGCCust.SetColumnProperty("gvCust","Path","ReadOnly",False)
+
+	Gui.frmLot.GsGCCust.SetColumnProperty("gvCust","Cust","MinWidth","50")
+	Gui.frmLot.GsGCCust.SetColumnProperty("gvCust","Name","MinWidth","200")
+	Gui.frmLot.GsGCCust.SetColumnProperty("gvCust","Path","MinWidth","260")
+	Gui.frmLot.GsGCCust.SetColumnProperty("gvCust","...","MinWidth","10")
+
+	Gui.frmLot.GsGCCust.SetColumnProperty("gvCust","...","CellBackColor","Gray")
+	Gui.frmLot.GsGCCust.SetColumnProperty("gvCust","...","CellForeColor","White")
+
+	Gui.frmLot.GsGCCust.SetColumnProperty("gvCust","Cust","HeaderHAlignment","Center")
+	Gui.frmLot.GsGCCust.SetColumnProperty("gvCust","...","HeaderHAlignment","Center")
+
+	Gui.frmLot.GsGCCust.SetColumnProperty("gvCust","Cust","CellHAlignment","Center")
+	Gui.frmLot.GsGCCust.SetColumnProperty("gvCust","...","CellHAlignment","Center")
+
+
+	Gui.frmLot.GsGCCust.MainView("gvCust")
+
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: GAB_5738_Mat_Cert_Setup.g2u{0}{0}Subroutine: {1}{0}Error Occurred {2} with description {3}.",V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndTry
+Program.Sub.LoadGvCust.End
+
+Program.Sub.LoadDtPart.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+
+	F.Intrinsic.Control.If(V.DataTable.dtPart.Exists)
+		F.Data.DataTable.Close("dtPart")
+	F.Intrinsic.Control.EndIf
+
+	F.Data.DataTable.CreateFromSQL("dtPart","con","Select RTrim(Part) As Part From Gab_5738_Lot_Part Where Part Not In ('000000OPT','000000','000000GR') Order By Part;",True)
+
+	F.Intrinsic.Control.CallSub(loadgvpart)
+
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: GAB_5738_Mat_Cert_Setup.g2u{0}{0}Subroutine: {1}{0}Error Occurred {2} with description {3}.",V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndTry
+Program.Sub.LoadDtPart.End
+
+Program.Sub.LoadGvPart.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+
+	Gui.frmLot.GsGCPart.AddGridviewFromDatatable("gvPart","dtPart")
+	Gui.frmLot.GsGCPart.SetGridviewProperty("gvPart","AllowDeleteRows",True)
+	Gui.frmLot.GsGCPart.SetGridviewProperty("gvPart","EnableAppearanceOddRow",True)
+
+	Gui.frmLot.GsGCPart.SetColumnProperty("gvPart","Part","Caption","Part")
+	Gui.frmLot.GsGCPart.SetColumnProperty("gvPart","Part","AllowEdit",False)
+
+	Gui.frmLot.GsGCPart.MainView("gvPart")
+
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: GAB_5738_Mat_Cert_Setup.g2u{0}{0}Subroutine: {1}{0}Error Occurred {2} with description {3}.",V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndTry
+Program.Sub.LoadGvPart.End
+
+Program.Sub.cmdAdd_Click.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+
+	V.Local.sRet.Declare
+	V.Local.iCnt.Declare
+	V.Local.bDup.Declare
+
+	V.Local.bDup.Set(False)
+	F.Intrinsic.UI.SetBrowserHotTypeAhead(True)
+
+	F.Intrinsic.Control.SelectCase(V.Screen.frmLot!tabLot.Tab)
+		F.Intrinsic.Control.Case(0)
+			F.Intrinsic.UI.Browser(205,"",V.Local.sRet)
+			F.Intrinsic.Control.If(V.Local.sRet,<>,"***CANCEL***")
+				F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+				F.Intrinsic.Control.For(V.Local.iCnt,0,V.DataTable.dtCust.RowCount--,1)
+					F.Intrinsic.Control.If(V.DataTable.dtCust(V.Local.iCnt).Cust!FieldValTrim,=,V.Local.sRet(0).Trim)
+						V.Local.bDup.Set(True)
+					F.Intrinsic.Control.EndIf
+				F.Intrinsic.Control.Next(V.Local.iCnt)
+				F.Intrinsic.Control.If(V.Local.bDup,=,False)
+					F.Data.DataTable.AddRow("dtCust","Cust",V.Local.sRet(0).Trim,"Name",V.Local.sRet(1).Trim)
+					F.Data.DataTable.SaveToDB("dtCust","con","Gab_5738_Lot_Cust","Cust*!*Name",7,"Cust@!@Cust*!*Name@!@Name*!*Path@!@Path")
+					F.Intrinsic.Control.CallSub(loaddtcust)
+				F.Intrinsic.Control.EndIf
+			F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.Case(1)
+			F.Intrinsic.UI.Browser("Select a Part","con","Select Part, Location, Description From V_Inventory_Mstr;","Part*!*Loc*!*Description","300*!*50*!*700",V.Local.sRet)
+			F.Intrinsic.Control.If(V.Local.sRet,<>,"***CANCEL***")
+				F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+				F.Intrinsic.Control.For(V.Local.iCnt,0,V.DataTable.dtPart.RowCount--,1)
+					F.Intrinsic.Control.If(V.DataTable.dtPart(V.Local.iCnt).Part!FieldValTrim,=,V.Local.sRet(0).Trim)
+						V.Local.bDup.Set(True)
+					F.Intrinsic.Control.EndIf
+				F.Intrinsic.Control.Next(V.Local.iCnt)
+				F.Intrinsic.Control.If(V.Local.bDup,=,False)
+					F.Data.DataTable.AddRow("dtPart","Part",V.Local.sRet(0).Trim)
+					F.Data.DataTable.SaveToDB("dtPart","con","Gab_5738_Lot_Part","Part",7,"Part@!@Part")
+					F.Intrinsic.Control.CallSub(loaddtpart)
+				F.Intrinsic.Control.EndIf
+			F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.EndSelect
+
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: GAB_5738_Mat_Cert_Setup.g2u{0}{0}Subroutine: {1}{0}Error Occurred {2} with description {3}.",V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndTry
+Program.Sub.cmdAdd_Click.End
+
+Program.Sub.cmdSavePart_Click.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+	V.Local.sSQL.Declare
+	V.Local.sTxtPath.Declare
+	V.Local.bPathExists.Declare
+
+	F.Intrinsic.Control.SelectCase(V.Screen.frmLot!tabLot.Tab)
+		F.Intrinsic.Control.Case(0)
+			V.Local.sTxtPath.Set(V.Screen.frmLot!txtPathC.Text)		
+			F.Intrinsic.Control.If(V.Local.sTxtPath.Trim,<>,"")
+				F.Intrinsic.File.PathExists(v.Local.sTxtPath,V.Local.bPathExists)
+				F.Intrinsic.Control.If(V.Local.bPathExists,<>,False)
+					F.Intrinsic.String.Build("Update Gab_5738_Lot_Cust Set Path = '{0}' Where Cust = '000000';",V.Local.sTxtPath,V.Local.sSQL)
+					F.ODBC.Connection!con.Execute(V.Local.sSQL)
+				F.Intrinsic.Control.ElseIf(V.Local.bPathExists,<>,True)
+					F.Intrinsic.UI.Msgbox("Please enter a valid path")
+					F.Intrinsic.Control.ExitSub
+				F.Intrinsic.Control.EndIf
+			F.Intrinsic.Control.EndIf
+			F.Data.DataTable.SaveToDB("dtCust","con","Gab_5738_Lot_Cust","Cust*!*Name",7,"Cust@!@Cust*!*Name@!@Name*!*Path@!@Path")
+			F.Intrinsic.Control.CallSub(loaddtcust)
+		F.Intrinsic.Control.Case(1)
+			V.Local.sTxtPath.Set(V.Screen.frmLot!txtPath.Text)		
+			F.Intrinsic.Control.If(V.Local.sTxtPath.Trim,<>,"")
+				F.Intrinsic.File.PathExists(v.Local.sTxtPath,V.Local.bPathExists)
+				F.Intrinsic.Control.If(V.Local.bPathExists,<>,False)
+					F.Intrinsic.String.Build("Update Gab_5738_Lot_Part Set Path = '{0}' Where Part = '000000';",V.Local.sTxtPath,V.Local.sSQL)
+					F.ODBC.Connection!con.Execute(V.Local.sSQL)
+				F.Intrinsic.Control.ElseIf(V.Local.bPathExists,<>,True)
+					F.Intrinsic.UI.Msgbox("Please enter a valid path")
+					F.Intrinsic.Control.ExitSub
+				F.Intrinsic.Control.EndIf
+			F.Intrinsic.Control.EndIf
+			F.Data.DataTable.SaveToDB("dtPart","con","Gab_5738_Lot_Part","Part",7,"Part@!@Part")
+			F.Intrinsic.Control.CallSub(loaddtpart)
+	F.Intrinsic.Control.EndSelect
+
+	F.Intrinsic.UI.Msgbox("Setup Saved","Save")
+
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: GAB_5738_Mat_Cert_Setup.g2u{0}{0}Subroutine: {1}{0}Error Occurred {2} with description {3}.",V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndTry
+Program.Sub.cmdSavePart_Click.End
+
+Program.Sub.RadioButtons.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+
+	V.Local.sOption.Declare
+
+	Gui.frmLot.tabLot.Enabled(True)
+
+	F.Intrinsic.Control.If(V.Screen.frmLot!optCust.Value)
+		V.Local.sOption.Set("Customer")
+	F.Intrinsic.Control.Else
+		V.Local.sOption.Set("Part")
+	F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.Control.SelectCase(V.Local.sOption)
+		F.Intrinsic.Control.Case("Customer")
+			Gui.frmLot.tabLot.TabVisible(0,True)
+			Gui.frmLot.tabLot.TabVisible(1,False)
+			F.ODBC.Connection!con.Execute("Update Gab_5738_Lot_Part Set Path = 'C' Where Part = '000000OPT';")
+		F.Intrinsic.Control.Case("Part")
+			Gui.frmLot.tabLot.TabVisible(1,True)
+			Gui.frmLot.tabLot.TabVisible(0,False)
+			F.ODBC.Connection!con.Execute("Update Gab_5738_Lot_Part Set Path = 'P' Where Part = '000000OPT';")
+	F.Intrinsic.Control.EndSelect
+
+	F.Intrinsic.Control.CallSub(tablot_click)
+
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: GAB_5738_Mat_Cert_Setup.g2u{0}{0}Subroutine: {1}{0}Error Occurred {2} with description {3}.",V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndTry
+Program.Sub.RadioButtons.End
+
+Program.Sub.RadioButtonsC.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+
+	V.Local.sOption.Declare
+
+	F.Intrinsic.Control.If(V.Screen.frmLot!optAll.Value)
+		V.Local.sOption.Set("All")
+	F.Intrinsic.Control.Else
+		V.Local.sOption.Set("Custom")
+	F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.Control.SelectCase(V.Local.sOption)
+		F.Intrinsic.Control.Case("All")
+			Gui.frmLot.txtPathC.Enabled(True)
+			Gui.frmLot.cmdPathC.Enabled(True)
+			'Gui.frmLot.cmdAddC.Enabled(False)
+			Gui.frmLot.GsGCCust.Enabled(False)
+			F.ODBC.Connection!con.Execute("Update Gab_5738_Lot_Cust Set Name = 'A' Where Cust = '000000';")
+		F.Intrinsic.Control.Case("Custom")
+			Gui.frmLot.txtPathC.Enabled(True)
+			Gui.frmLot.cmdPathC.Enabled(True)
+			'Gui.frmLot.cmdAddC.Enabled(True)
+			Gui.frmLot.GsGCCust.Enabled(True)
+			F.ODBC.Connection!con.Execute("Update Gab_5738_Lot_Cust Set Name = 'C' Where Cust = '000000';")
+	F.Intrinsic.Control.EndSelect
+
+	F.Intrinsic.Control.CallSub(tablot_click)
+
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: GAB_5738_Mat_Cert_Setup.g2u{0}{0}Subroutine: {1}{0}Error Occurred {2} with description {3}.",V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndTry
+Program.Sub.RadioButtonsC.End
+
+Program.Sub.PathSelection.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+
+	V.Local.sPath.Declare
+	V.Local.sSQL.Declare
+
+	F.Intrinsic.UI.FolderBrowser("Select Folder for Path",V.Local.sPath)
+	F.Intrinsic.Control.If(V.Local.sPath,<>,"***CANCEL***")
+		F.Intrinsic.Control.SelectCase(V.Screen.frmLot!tabLot.Tab)
+			F.Intrinsic.Control.Case(0)
+				Gui.frmLot.txtPathC.Text(V.Local.sPath)
+			F.Intrinsic.Control.Case(1)
+				Gui.frmLot.txtPath.Text(V.Local.sPath)
+		F.Intrinsic.Control.EndSelect
+	F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: GAB_5738_Mat_Cert_Setup.g2u{0}{0}Subroutine: {1}{0}Error Occurred {2} with description {3}.",V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndTry
+Program.Sub.PathSelection.End
+
+Program.Sub.cmdGrp_Click.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+
+	V.Local.sRet.Declare
+	V.Local.sSQL.Declare
+
+	F.Intrinsic.UI.MiniBrowser("Select a Group ID","con","Select Grp_Id,Grp_Name From ATG_Doc_Grp Order by Grp_Id","Grp ID*!*Grp Name","1000*!*3000",V.Local.sRet)
+	F.Intrinsic.Control.If(V.Local.sRet(0),<>,"***CANCEL***")
+		F.intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+		Gui.frmLot.txtGrp.Text(V.Local.sRet(0).Trim)
+		Gui.frmLot.txtGrp2.Text(V.Local.sRet(1).Trim)
+		F.Intrinsic.String.Build("Update Gab_5738_Lot_Part Set Path = '{0}' Where Part = '000000GR';",V.Local.sRet(0).Trim,V.Local.sSQL)
+		F.ODBC.Connection!con.Execute(V.Local.sSQL)
+	F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: GAB_5738_Mat_Cert_Setup.g2u{0}{0}Subroutine: {1}{0}Error Occurred {2} with description {3}.",V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndTry
+Program.Sub.cmdGrp_Click.End
+
+Program.Sub.GsGCCust_RowCellClick.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+
+	V.Local.sPath.Declare
+
+	F.Intrinsic.Control.If(V.Args.Column,=,"...")
+		F.Intrinsic.UI.FolderBrowser("Select Folder for Path",V.Local.sPath)
+		F.Intrinsic.Control.If(V.Local.sPath,<>,"***CANCEL***")
+			F.Data.DataTable.SetValue("dtCust",V.Args.RowIndex,"Path",V.Local.sPath)
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: GAB_5738_Mat_Cert_Setup.g2u{0}{0}Subroutine: {1}{0}Error Occurred {2} with description {3}.",V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndTry
+Program.Sub.GsGCCust_RowCellClick.End
+
+Program.Sub.tabLot_Click.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+
+	F.Intrinsic.Control.SelectCase(V.Screen.frmLot!tabLot.Tab)
+		F.Intrinsic.Control.Case(0)
+			F.Intrinsic.Control.If(V.Screen.frmLot!optAll.Value)
+				Gui.frmLot.cmdAdd.Enabled(False)
+			F.Intrinsic.Control.Else
+				Gui.frmLot.cmdAdd.Enabled(True)
+			F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.Case(1)
+			Gui.frmLot.cmdAdd.Enabled(True)
+	F.Intrinsic.Control.EndSelect
+
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: GAB_5738_Mat_Cert_Setup.g2u{0}{0}Subroutine: {1}{0}Error Occurred {2} with description {3}.",V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndTry
+Program.Sub.tabLot_Click.End
+
+Program.Sub.Comments.Start
+${$0$}$Modify 4477 W/ Merge PDF$}$DYUNUS$}$10/28/2019 4:36:27 PM$}$True
+${$5$}$2.0.0.0$}$2
+${$6$}$dyunus$}$20210426083843277$}$xZ6SHi8g7O0Qsxe6AiO2NH3PnOKQRy0TGWyixYf0+RE1CRznq8ogmnmKhuUv9EElmf8qb0iMu48=
+Program.Sub.Comments.End
