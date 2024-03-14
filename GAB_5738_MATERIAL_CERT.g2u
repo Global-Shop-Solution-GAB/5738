@@ -1,0 +1,1544 @@
+﻿Program.Sub.ScreenSU.Start
+Gui.frmCertEdit..create
+Gui.frmCertEdit..caption("Material Cert Pack (Edit)")
+Gui.frmCertEdit..size(14775,5775)
+Gui.frmCertEdit..minx(14445)
+Gui.frmCertEdit..miny(5010)
+Gui.frmCertEdit..position(0,0)
+Gui.frmCertEdit..event(UnLoad,frmCertEdit_UnLoad)
+Gui.frmCertEdit..forecolor(0)
+Gui.frmCertEdit..BackColor(-2147483633)
+Gui.frmCertEdit..mousepointer(0)
+Gui.frmCertEdit.picGSSLogo.Create(PictureBox)
+Gui.frmCertEdit.picGSSLogo.Size(4125,960)
+Gui.frmCertEdit.picGSSLogo.Position(5520,45)
+Gui.frmCertEdit.picGSSLogo.Anchor(1)
+Gui.frmCertEdit.frm_Info.create(frame)
+Gui.frmCertEdit.frm_Info.size(3420,810)
+Gui.frmCertEdit.frm_Info.position(45,120)
+Gui.frmCertEdit.lblPck.create(label,"Packing List:",True,990,255,1,60,195,True,0,Arial,8,-2147483633,0)
+Gui.frmCertEdit.lblPck.parent("frm_Info")
+Gui.frmCertEdit.lblPck.defaultvalue("")
+Gui.frmCertEdit.txtPck.create(textbox,"",True,1215,300,0,60,405,True,0,Arial,8,-2147483643,1)
+Gui.frmCertEdit.txtPck.parent("frm_Info")
+Gui.frmCertEdit.txtPck.defaultvalue("")
+Gui.frmCertEdit.txtPck.Locked(True)
+Gui.frmCertEdit.lblOrderNo.create(label,"Order No:",True,825,255,1,1335,195,True,0,Arial,8,-2147483633,0)
+Gui.frmCertEdit.lblOrderNo.parent("frm_Info")
+Gui.frmCertEdit.lblOrderNo.defaultvalue("")
+Gui.frmCertEdit.txtOrderNo.create(textbox,"",True,1215,300,0,1335,405,True,0,Arial,8,-2147483643,1)
+Gui.frmCertEdit.txtOrderNo.parent("frm_Info")
+Gui.frmCertEdit.txtOrderNo.defaultvalue("")
+Gui.frmCertEdit.txtOrderNo.Locked(True)
+Gui.frmCertEdit.lblShipNo.create(label,"Ship No:",True,705,255,1,2595,195,True,0,Arial,8,-2147483633,0)
+Gui.frmCertEdit.lblShipNo.parent("frm_Info")
+Gui.frmCertEdit.lblShipNo.defaultvalue("")
+Gui.frmCertEdit.txtShipNo.create(textbox,"",True,750,300,0,2595,405,True,0,Arial,8,-2147483643,1)
+Gui.frmCertEdit.txtShipNo.parent("frm_Info")
+Gui.frmCertEdit.txtShipNo.defaultvalue("")
+Gui.frmCertEdit.txtShipNo.Locked(True)
+Gui.frmCertEdit.cmdOpen.create(button)
+Gui.frmCertEdit.cmdOpen.caption("Open Links")
+Gui.frmCertEdit.cmdOpen.size(1305,375)
+Gui.frmCertEdit.cmdOpen.position(11655,4275)
+Gui.frmCertEdit.cmdOpen.event(Click,cmdOpen_Click)
+Gui.frmCertEdit.cmdOpen.defaultvalue("")
+Gui.frmCertEdit.cmdOpen.Anchor(10)
+Gui.frmCertEdit.cmdPrint.create(button)
+Gui.frmCertEdit.cmdPrint.caption("Print Links")
+Gui.frmCertEdit.cmdPrint.size(1305,375)
+Gui.frmCertEdit.cmdPrint.position(12975,4275)
+Gui.frmCertEdit.cmdPrint.event(Click,cmdPrint_Click)
+Gui.frmCertEdit.cmdPrint.defaultvalue("")
+Gui.frmCertEdit.cmdPrint.Anchor(10)
+Gui.frmCertEdit.GsGCEdit.Create(GsGridControl)
+Gui.frmCertEdit.GsGCEdit.Size(14235,3210)
+Gui.frmCertEdit.GsGCEdit.Position(45,1020)
+Gui.frmCertEdit.GsGCEdit.Event(RowCellClick,GsGCEdit_RowCellClick)
+Gui.frmCertEdit.GsGCEdit.Anchor(15)
+Gui.frmCertEdit.cmdRefresh.Create(Button)
+Gui.frmCertEdit.cmdRefresh.Size(1305,375)
+Gui.frmCertEdit.cmdRefresh.Position(3540,555)
+Gui.frmCertEdit.cmdRefresh.Caption("REFRESH")
+Gui.frmCertEdit.cmdRefresh.Event(Click,cmdRefresh_Click)
+Gui.frmCertEdit.txtCertPath.Create(TextBox,"",False,3675,300,0,10605,690,True,1,"Arial",8,-2147483633,2)
+Gui.frmCertEdit.txtCertPath.Locked(True)
+Gui.frmCertEdit.txtCertPath.Anchor(9)
+Gui.frmCertEdit.cmdOpenZip.Create(Button)
+Gui.frmCertEdit.cmdOpenZip.Size(1305,375)
+Gui.frmCertEdit.cmdOpenZip.Position(10335,4275)
+Gui.frmCertEdit.cmdOpenZip.Anchor(10)
+Gui.frmCertEdit.cmdOpenZip.Caption("Open Zip")
+Gui.frmCertEdit.cmdOpenZip.DefaultValue("")
+Gui.frmCertEdit.cmdOpenZip.Event(Click,cmdOpenZip_Click)
+Gui.frmCertEdit.cmdMergePDF.Create(Button)
+Gui.frmCertEdit.cmdMergePDF.Size(1305,375)
+Gui.frmCertEdit.cmdMergePDF.Position(9060,4275)
+Gui.frmCertEdit.cmdMergePDF.Caption("Merge PDF")
+Gui.frmCertEdit.cmdMergePDF.DefaultValue("")
+Gui.frmCertEdit.cmdMergePDF.Event(Click,MergePDF)
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+	V.Global.sOrder.Declare
+	V.Global.sOrderSuffix.Declare
+	V.Global.sPckNo.Declare
+	V.Global.sTargetFile.Declare
+	V.Global.sOption.Declare
+	V.Global.sPartPath.Declare
+	V.Global.sPartGroup.Declare
+	V.Global.sCustOpt.Declare
+	V.Global.sCustAllPath.Declare
+	V.Global.sCustPO.Declare
+	V.Global.sCust.Declare
+	V.Global.sTempPath.Declare
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+	V.Local.sSQL.Declare
+	
+	'Hooks: 25910, 25984, 37810, 37832, 28532
+
+'	V.Global.sPckNo.Set("0000143")
+'	V.Global.sOrder.Set("0000276")
+'	V.Global.sOrderSuffix.Set("0000")
+
+	F.ODBC.Connection!con.OpenConnection(V.Ambient.PDSN,V.Ambient.PUser,V.Ambient.PPass)
+
+	F.Intrinsic.Control.SelectCase(V.Caller.Hook)
+		F.Intrinsic.Control.Case(25910)
+			V.Passed.000210.Set("Matl Cert Pack (Edit)")
+
+		F.Intrinsic.Control.Case(37810)
+			V.Passed.000219.Set("Matl Cert Pack (Edit)")
+
+		F.Intrinsic.Control.Case(25984)
+			V.Global.sOrder.Set(V.Passed.000150)
+			F.Intrinsic.String.LPad(V.Global.sOrder,"0",7,V.Global.sOrder)
+			V.Global.sOrderSuffix.Set(V.Passed.000151)
+			V.Global.sPckNo.Set(V.Passed.000003)
+			V.Global.sCust.Set(V.Passed.000006)
+			F.Intrinsic.String.LPad(V.Global.sPckNo,"0",7,V.Global.sPckNo)
+			F.Intrinsic.String.LPad(V.Global.sOrderSuffix,"0",4,V.Global.sOrderSuffix)
+			F.Intrinsic.String.Build("Select CUSTOMER_PO From V_SHIPMENT_HEADER Where ORDER_NO = '{0}' AND ORDER_SUFFIX = '{1}';",V.Global.sOrder,V.Global.sOrderSuffix,V.Local.sSQL)
+			F.ODBC.Connection!con.ExecuteAndReturn(V.Local.sSQL,V.Global.sCustPO)			
+			F.Intrinsic.Control.If(V.Global.sOrder,=,"0000000")
+				F.Intrinsic.Control.End 
+			F.Intrinsic.Control.EndIf
+			F.Intrinsic.Control.CallSub(checktables)
+			F.Intrinsic.Control.CallSub(checkoptions)
+			F.Intrinsic.Control.CallSub(lotinfocheck)
+
+		F.Intrinsic.Control.Case(37832)
+			V.Global.sOrder.Set(V.Passed.000150)
+			F.Intrinsic.String.LPad(V.Global.sOrder,"0",7,V.Global.sOrder)
+			V.Global.sOrderSuffix.Set(V.Passed.000151)
+			V.Global.sPckNo.Set(V.Passed.000008)
+			V.Global.sCustPO.Set(V.Passed.000328)
+			V.Global.sCust.Set(V.Passed.000006)
+			F.Intrinsic.String.LPad(V.Global.sPckNo,"0",7,V.Global.sPckNo)
+			F.Intrinsic.String.LPad(V.Global.sOrderSuffix,"0",4,V.Global.sOrderSuffix)
+			F.Intrinsic.Control.If(V.Global.sOrder,=,"0000000")
+				F.Intrinsic.Control.End 
+			F.Intrinsic.Control.EndIf
+			F.Intrinsic.Control.CallSub(checktables)
+			F.Intrinsic.Control.CallSub(checkoptions)
+			F.Intrinsic.Control.CallSub(lotinfocheck)
+
+		F.Intrinsic.Control.Case(28532)
+			V.Global.sOrder.Set(V.Passed.FIRST-ORDER)
+			V.Global.sOrderSuffix.Set(V.Passed.FIRST-SEQ)
+			V.Global.sPckNo.Set(V.Passed.000168)
+			V.Global.sCust.Set(V.Passed.000204)
+			F.Intrinsic.String.Build("Select CUSTOMER_PO From V_SHIPMENT_HEADER Where ORDER_NO = '{0}' AND ORDER_SUFFIX = '{1}';",V.Global.sOrder,V.Global.sOrderSuffix,V.Local.sSQL)
+			F.ODBC.Connection!con.ExecuteAndReturn(V.Local.sSQL,V.Global.sCustPO)
+			F.Intrinsic.String.LPad(V.Global.sPckNo,"0",7,V.Global.sPckNo)
+			F.Intrinsic.Control.If(V.Global.sOrder,=,"0000000")
+				F.Intrinsic.Control.End 
+			F.Intrinsic.Control.EndIf
+			F.Intrinsic.Control.CallSub(checktables)
+			F.Intrinsic.Control.CallSub(checkoptions)
+			F.Intrinsic.Control.CallSub(lotinfocheck)
+
+		F.Intrinsic.Control.CaseElse
+			F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndSelect
+	
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: GAB_5738_Mat_Cert_Info.g2u{0}{0}Subroutine: {1}{0}Error Occurred {2} with description {3}.",V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndTry
+Program.Sub.Main.End
+
+Program.Sub.frmCertEdit_UnLoad.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+	
+'	F.Intrinsic.File.DeleteDir(V.Global.sTempPath)
+	
+	F.ODBC.Connection!con.Close
+	F.Intrinsic.Control.End 
+	
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: GAB_5738_Mat_Cert_Info.g2u{0}{0}Subroutine: {1}{0}Error Occurred {2} with description {3}.",V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndTry
+Program.Sub.frmCertEdit_UnLoad.End
+
+Program.Sub.CheckTables.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+	
+	V.Local.bExists.Declare
+
+	'GAB_5738_LOT_LBHS
+	F.ODBC.Connection!con.TableExists("GAB_5738_LOT_LBHS",V.Local.bExists)
+	F.Intrinsic.Control.If(V.Local.bExists,=,False)
+		F.Intrinsic.UI.Msgbox("Need to run Shipping & Receiving > Administration > Material Cert Pack Setup [.NET] first.","Setup Tables Missing")
+		F.ODBC.Connection!con.Close
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndIf
+
+	'GAB_5738_LOT_INFO
+	F.ODBC.Connection!con.TableExists("GAB_5738_LOT_INFO",V.Local.bExists)
+	F.Intrinsic.Control.If(V.Local.bExists,=,False)
+		F.Intrinsic.UI.Msgbox("Need to run Shipping & Receiving > Administration > Material Cert Pack Setup [.NET] first.","Setup Tables Missing")
+		F.ODBC.Connection!con.Close
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndIf
+
+	'GAB_5738_LOT_PART
+	F.ODBC.Connection!con.TableExists("GAB_5738_LOT_PART",V.Local.bExists)
+	F.Intrinsic.Control.If(V.Local.bExists,=,False)
+		F.Intrinsic.UI.Msgbox("Need to run Shipping & Receiving > Administration > Material Cert Pack Setup [.NET] first.","Setup Tables Missing")
+		F.ODBC.Connection!con.Close
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndIf
+
+	'GAB_5738_LOT_CUST
+	F.ODBC.Connection!con.TableExists("GAB_5738_LOT_CUST",V.Local.bExists)
+	F.Intrinsic.Control.If(V.Local.bExists,=,False)
+		F.Intrinsic.UI.Msgbox("Need to run Shipping & Receiving > Administration > Material Cert Pack Setup [.NET] first.","Setup Tables Missing")
+		F.ODBC.Connection!con.Close
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndIf
+	
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: GAB_5738_Mat_Cert_Info.g2u{0}{0}Subroutine: {1}{0}Error Occurred {2} with description {3}.",V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndTry
+Program.Sub.CheckTables.End
+
+Program.Sub.CheckOptions.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+	
+	F.ODBC.Connection!con.ExecuteAndReturn("Select Path From Gab_5738_Lot_Part Where Part = '000000OPT';",V.Global.sOption)
+	V.Global.sOption.Set(V.Global.sOption.Trim)
+	F.Intrinsic.Control.SelectCase(V.Global.sOption.Trim)
+		F.Intrinsic.Control.Case("C")
+			F.ODBC.Connection!con.ExecuteAndReturn("Select Name,Path From Gab_5738_Lot_Cust Where Cust = '000000';",V.Global.sCustOpt)
+			F.Intrinsic.String.Split(V.Global.sCustOpt,"*!*",V.Global.sCustOpt)
+			V.Global.sCustAllPath.Set(V.Global.sCustOpt(1).Trim)
+			V.Global.sCustOpt.Set(V.Global.sCustOpt(0).Trim)
+
+		F.Intrinsic.Control.Case("P")
+			F.ODBC.Connection!con.ExecuteAndReturn("Select Path From Gab_5738_Lot_Part Where Part = '000000';",V.Global.sPartPath)
+			F.ODBC.Connection!con.ExecuteAndReturn("Select Path From Gab_5738_Lot_Part Where Part = '000000GR';",V.Global.sPartGroup)
+
+		F.Intrinsic.Control.CaseElse
+			F.Intrinsic.UI.Msgbox("Please setup Material Cert Pack first.","Check Options")
+			F.ODBC.Connection!con.Close
+			F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndSelect
+	
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: GAB_5738_Mat_Cert_Info.g2u{0}{0}Subroutine: {1}{0}Error Occurred {2} with description {3}.",V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndTry
+Program.Sub.CheckOptions.End
+
+Program.Sub.LotInfoCheck.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+	
+	V.Local.sSQL.Declare
+
+	F.Intrinsic.Control.If(V.DataTable.dtLotInfoCheck.Exists)
+		F.Data.DataTable.Close("dtLotInfoCheck")
+	F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.String.Build("Select * from Gab_5738_Lot_Info Where PCK_NO = '{0}' and ORDER_NO = '{1}' and ORDER_SHIP_NO = '{2}';",V.Global.sPckNo,V.Global.sOrder,V.Global.sOrderSuffix,V.Local.sSQL)
+	F.Data.DataTable.CreateFromSQL("dtLotInfoCheck","con",V.Local.sSQL,True)
+	F.Intrinsic.Control.If(V.DataTable.dtLotInfoCheck.RowCount,>,0)
+		F.Intrinsic.Control.CallSub(loadgv)
+	F.Intrinsic.Control.Else
+		F.Intrinsic.Control.CallSub(pulldata)
+	F.Intrinsic.Control.EndIf
+	
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: GAB_5738_Mat_Cert_Info.g2u{0}{0}Subroutine: {1}{0}Error Occurred {2} with description {3}.",V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndTry
+Program.Sub.LotInfoCheck.End
+
+Program.Sub.PullData.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+	
+	V.Local.sSQL.Declare
+	V.Local.sCust.Declare
+	V.Local.iCnt.Declare
+	V.Local.iCnt2.Declare
+	V.Local.iCnt3.Declare
+	V.Local.sPart.Declare
+	V.Local.sLoc.Declare
+	V.Local.sOrderRec.Declare
+	V.Local.sLot.Declare
+	V.Local.sBin.Declare
+	V.Local.sHeat.Declare
+	V.Local.sSerial.Declare
+	V.Local.sJob.Declare
+	V.Local.sSuffix.Declare
+	V.Local.sCodeTrans.Declare
+	V.Local.sSeq.Declare
+	V.Local.iCodeChk.Declare(Long,0)
+	V.Local.iID.Declare(Long,1)
+	
+	F.Intrinsic.Control.If(V.DataTable.dtShipLns.Exists)
+		F.Data.DataTable.Close("dtShipLns")
+	F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.Control.If(V.Global.sOption,=,"C")
+		F.Intrinsic.Control.If(V.Global.sCustOpt,=,"C")
+			F.Intrinsic.String.Build("Select Customer From V_Shipment_Header Where ORDER_NO = '{0}' AND ORDER_SUFFIX = '{1}';",V.Global.sOrder,V.Global.sOrderSuffix,V.Local.sSQL)
+'			F.Intrinsic.String.Build("Select Customer From ORDER_HIST_LOT Where ORDER_NO = '{0}' AND ORDER_SUFFIX = '{1}';",V.Global.sOrder,V.Global.sOrderSuffix,V.Local.sSQL)
+			F.ODBC.Connection!con.ExecuteAndReturn(V.Local.sSQL,V.Local.sCust)
+			F.Intrinsic.String.Build("Select Cust From Gab_5738_Lot_Cust Where CUST = '{0}';",V.Local.sCust.Trim,V.Local.sSQL)
+			F.ODBC.Connection!con.ExecuteAndReturn(V.Local.sSQL,V.Local.sCust)
+			F.Intrinsic.Control.If(V.Local.sCust,=,"")
+				F.ODBC.Connection!con.Close
+				F.Intrinsic.Control.End 
+			F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.String.Build("DELETE FROM Gab_5738_Lot_Lbhs WHERE TERMINAL = '{0}';",V.Caller.Terminal,V.Local.sSql)
+	F.ODBC.Connection!con.Execute(V.Local.sSql)
+
+	F.Intrinsic.String.Build("Select PART, LOCN, ORDER_LINE, LOT, BIN, HEAT, SERIAL from ORDER_HIST_LOT Where ORDER_NO = '{0}' AND ORDER_SUFFIX = '{1}' AND PART <> 'FREIGHT';",V.Global.sOrder,V.Global.sOrderSuffix,V.Local.sSQL)
+	F.Data.DataTable.CreateFromSQL("dtShipLns","con",V.Local.sSQL,True)
+	F.Intrinsic.Control.If(V.DataTable.dtShipLns.RowCount,<>,0)
+		F.Intrinsic.Control.For(V.Local.iCnt,0,V.DataTable.dtShipLns.RowCount--,1)
+			V.Local.sPart.Set(V.DataTable.dtShipLns(V.Local.iCnt).PART!FieldValTrim)
+			V.Local.sLoc.Set(V.DataTable.dtShipLns(V.Local.iCnt).LOCN!FieldValTrim)
+			V.Local.sLot.Set(V.DataTable.dtShipLns(V.Local.iCnt).LOT!FieldValTrim)
+			V.Local.sBin.Set(V.DataTable.dtShipLns(V.Local.iCnt).BIN!FieldValTrim)
+			V.Local.sHeat.Set(V.DataTable.dtShipLns(V.Local.iCnt).HEAT!FieldValTrim)
+			V.Local.sSerial.Set(V.DataTable.dtShipLns(V.Local.iCnt).SERIAL!FieldValTrim)
+			V.Local.sOrderRec.Set(V.DataTable.dtShipLns(V.Local.iCnt).ORDER_LINE!FieldValTrim)
+
+			'Check Part
+			F.Intrinsic.Control.If(V.Global.sOption,=,"P")
+				F.Intrinsic.String.Build("Select PART from Gab_5738_Lot_Part Where PART = '{0}';",V.Local.sPart,V.Local.sSQL)
+				F.Data.DataTable.CreateFromSQL("dtPart","con",V.Local.sSQL,True)
+				F.Intrinsic.Control.If(V.DataTable.dtPart.RowCount,=,0)
+					F.Data.DataTable.Close("dtPart")
+					F.Intrinsic.Control.ExitFor(V.Local.iCnt)
+				F.Intrinsic.Control.EndIf
+				F.Data.DataTable.Close("dtPart")
+			F.Intrinsic.Control.EndIf
+
+			F.Intrinsic.String.Build("Select DISTINCT CODE_TRANSACTION,JOB,SUFFIX,SEQUENCE from V_ITEM_HISTORY Where PART = '{0}' AND LOCATION = '{1}' AND LOT = '{2}' AND BIN = '{3}' AND HEAT = '{4}' AND SERIAL_NUMBER = '{5}' AND CODE_TRANSACTION IN ('J52','J55','S52','C52','R10','R11');",V.Local.sPart,V.Local.sLoc,V.Local.sLot,V.Local.sBin,V.Local.sHeat,V.Local.sSerial,V.Local.sSQL)
+			F.Data.DataTable.CreateFromSQL("dtItemHist","con",V.Local.sSQL,True)
+			F.Intrinsic.Control.If(V.DataTable.dtItemHist.RowCount,<>,0)
+				F.Intrinsic.Control.For(V.Local.iCnt2,0,V.DataTable.dtItemHist.RowCount--,1)
+					V.Local.sJob.Set(V.DataTable.dtItemHist(V.Local.iCnt2).JOB!FieldValTrim)
+					V.Local.sSuffix.Set(V.DataTable.dtItemHist(V.Local.iCnt2).SUFFIX!FieldValTrim)
+					V.Local.sCodeTrans.Set(V.DataTable.dtItemHist(V.Local.iCnt2).CODE_TRANSACTION!FieldValTrim)
+					V.Local.sSeq.Set(V.DataTable.dtItemHist(V.Local.iCnt2).SEQUENCE!FieldValTrim)
+					F.Intrinsic.String.Build("SELECT * FROM Gab_5738_Lot_Lbhs WHERE TERMINAL = '{0}';",V.Caller.Terminal,V.Local.sSql)
+					F.Data.DataTable.CreateFromSQL("dtSave","con",V.Local.sSQL,True)
+					F.Data.DataTable.AddRow("dtSave","Terminal",V.Caller.Terminal,"ID",V.Local.iID,"PART",V.Local.sPart,"LOCATION",V.Local.sLoc,"LOT",V.Local.sLot,"BIN",V.Local.sBin,"HEAT",V.Local.sHeat,"SERIAL",V.Local.sSerial,"JOB",V.Local.sJob,"SUFFIX",V.Local.sSuffix,"CODE_TRANSACTION",V.Local.sCodeTrans,"SEQUENCE",V.Local.sSeq,"ORDER_REC",V.Local.sOrderRec,"CHK","N")
+					F.Data.DataTable.SaveToDB("dtSave","con","Gab_5738_Lot_Lbhs","Terminal*!*ID")
+					F.Data.DataTable.Close("dtSave")
+					F.Intrinsic.Math.Add(V.Local.iID,1,V.Local.iID)
+				F.Intrinsic.Control.Next(V.Local.iCnt2)
+			F.Intrinsic.Control.EndIf
+			F.Data.DataTable.Close("dtItemHist")
+
+			F.Intrinsic.Control.Do
+				F.Intrinsic.String.Build("Select * FROM Gab_5738_Lot_Lbhs WHERE CHK = 'N' AND TERMINAL = '{0}';",V.Caller.Terminal,V.Local.sSQL)
+				F.Data.DataTable.CreateFromSQL("dtLbhs","con",V.Local.sSQL,True)
+				F.Intrinsic.Control.If(V.DataTable.dtLbhs.RowCount,=,0)
+					F.Data.DataTable.Close("dtLbhs")
+					F.Intrinsic.Control.ExitDo
+				F.Intrinsic.Control.Else
+					F.Intrinsic.String.Build("Update Gab_5738_Lot_Lbhs Set CHK = 'Y' WHERE TERMINAL = '{0}' AND ID = '{1}';",V.Caller.Terminal,V.DataTable.dtLbhs(0).ID!FieldVal,V.Local.sSql)
+					F.ODBC.Connection!con.Execute(V.Local.sSQL)
+
+					F.Intrinsic.Control.If(V.DataTable.dtLbhs(0).SEQUENCE!FieldVal,>=,990000)
+						F.Intrinsic.Control.SelectCase(V.DataTable.dtLbhs(0).CODE_TRANSACTION!FieldVal)
+							F.Intrinsic.Control.CaseAny("J52","S52","C52")
+								V.Local.iCodeChk.Set(1)
+						F.Intrinsic.Control.EndSelect
+
+						F.Intrinsic.Control.If(V.Local.iCodeChk,=,1)
+							F.Intrinsic.String.Build("SELECT PART,LOCATION,LOT,BIN,HEAT,SERIAL_NUMBER,JOB,SUFFIX,CODE_TRANSACTION,SEQUENCE FROM V_ITEM_HISTORY WHERE JOB = '{0}' AND SUFFIX = '{1}' AND CODE_TRANSACTION IN ('J52','J55','S52','C52','R10','R11');",V.DataTable.dtLbhs(0).JOB!FieldValTrim,V.DataTable.dtLbhs(0).SUFFIX!FieldValTrim,V.Local.sSQL)
+							F.Data.DataTable.CreateFromSQL("dtL1","con",V.Local.sSQL,True)
+							F.Intrinsic.Control.If(V.DataTable.dtL1.RowCount,<>,0)
+								F.Intrinsic.Control.For(V.Local.iCnt3,0,V.DataTable.dtL1.RowCount--,1)
+									F.Intrinsic.String.Build("Select * FROM Gab_5738_Lot_Lbhs WHERE TERMINAL = '{0}' AND PART = '{1}' AND LOCATION = '{2}' AND LOT = '{3}' AND BIN = '{4}' AND HEAT = '{5}' AND SERIAL = '{6}' AND SEQUENCE = '{7}' AND JOB = '{8}' AND SUFFIX = '{9}';",V.Caller.Terminal,V.DataTable.dtL1(V.Local.iCnt3).PART!FieldValTrim,V.DataTable.dtL1(V.Local.iCnt3).LOCATION!FieldValTrim,V.DataTable.dtL1(V.Local.iCnt3).LOT!FieldValTrim,V.DataTable.dtL1(V.Local.iCnt3).BIN!FieldValTrim,V.DataTable.dtL1(V.Local.iCnt3).HEAT!FieldValTrim,V.DataTable.dtL1(V.Local.iCnt3).SERIAL_NUMBER!FieldValTrim,V.DataTable.dtL1(V.Local.iCnt3).SEQUENCE!FieldValTrim,V.DataTable.dtL1(V.Local.iCnt3).JOB!FieldValTrim,V.DataTable.dtL1(V.Local.iCnt3).SUFFIX!FieldValTrim,V.Local.sSQL)
+									F.Data.DataTable.CreateFromSQL("dtChk","con",V.Local.sSQL,True)
+									F.Intrinsic.Control.If(V.DataTable.dtChk.RowCount,=,0)
+										F.Intrinsic.String.Build("SELECT * FROM Gab_5738_Lot_Lbhs WHERE TERMINAL = '{0}';",V.Caller.Terminal,V.Local.sSql)
+										F.Data.DataTable.CreateFromSQL("dtSave","con",V.Local.sSQL,True)
+										F.Data.DataTable.AddRow("dtSave","Terminal",V.Caller.Terminal,"ID",V.Local.iID,"PART",V.DataTable.dtL1(V.Local.iCnt3).PART!FieldValTrim,"LOCATION",V.DataTable.dtL1(V.Local.iCnt3).LOCATION!FieldValTrim,"LOT",V.DataTable.dtL1(V.Local.iCnt3).LOT!FieldValTrim,"BIN",V.DataTable.dtL1(V.Local.iCnt3).BIN!FieldValTrim,"HEAT",V.DataTable.dtL1(V.Local.iCnt3).HEAT!FieldValTrim,"SERIAL",V.DataTable.dtL1(V.Local.iCnt3).SERIAL_NUMBER!FieldValTrim,"JOB",V.DataTable.dtL1(V.Local.iCnt3).JOB!FieldValTrim,"SUFFIX",V.DataTable.dtL1(V.Local.iCnt3).SUFFIX!FieldValTrim,"CODE_TRANSACTION",V.DataTable.dtL1(V.Local.iCnt3).CODE_TRANSACTION!FieldValTrim,"SEQUENCE",V.DataTable.dtL1(V.Local.iCnt3).SEQUENCE!FieldValTrim,"ORDER_REC",V.Local.sOrderRec,"CHK","N")
+										F.Data.DataTable.SaveToDB("dtSave","con","Gab_5738_Lot_Lbhs","Terminal*!*ID")
+										F.Data.DataTable.Close("dtSave")
+										F.Intrinsic.Math.Add(V.Local.iID,1,V.Local.iID)
+									F.Intrinsic.Control.EndIf
+									F.Data.DataTable.Close("dtChk")
+								F.Intrinsic.Control.Next(V.Local.iCnt3)
+							F.Intrinsic.Control.EndIf
+							F.Data.DataTable.Close("dtL1")
+						F.Intrinsic.Control.EndIf
+						V.Local.iCodeChk.Set(0)
+
+						F.Intrinsic.Control.SelectCase(V.DataTable.dtLbhs(0).CODE_TRANSACTION!FieldVal)
+							F.Intrinsic.Control.CaseAny("J55","R10","R11")
+								V.Local.iCodeChk.Set(1)
+						F.Intrinsic.Control.EndSelect
+
+						F.Intrinsic.Control.If(V.Local.iCodeChk,=,1)
+							F.Intrinsic.String.Build("Select * FROM V_ITEM_HISTORY WHERE PART='{0}' AND LOCATION='{1}' AND LOT='{2}' AND BIN='{3}' AND HEAT='{4}' AND SERIAL_NUMBER='{5}'",V.DataTable.dtLbhs(0).PART!FieldValTrim,V.DataTable.dtLbhs(0).LOCATION!FieldValTrim,V.DataTable.dtLbhs(0).LOT!FieldValTrim,V.DataTable.dtLbhs(0).BIN!FieldValTrim,V.DataTable.dtLbhs(0).HEAT!FieldValTrim,V.DataTable.dtLbhs(0).SERIAL!FieldValTrim,V.Local.sSQL)
+							F.Data.DataTable.CreateFromSQL("dtL1","con",V.Local.sSQL,True)
+							F.Intrinsic.Control.If(V.DataTable.dtL1.RowCount,<>,0)
+								F.Intrinsic.Control.For(V.Local.iCnt3,0,V.DataTable.dtL1.RowCount--,1)
+									F.Intrinsic.String.Build("Select * FROM Gab_5738_Lot_Lbhs WHERE TERMINAL = '{0}' AND PART = '{1}' AND LOCATION = '{2}' AND LOT = '{3}' AND BIN = '{4}' AND HEAT = '{5}' AND SERIAL = '{6}' AND SEQUENCE = '{7}' AND JOB = '{8}' AND SUFFIX = '{9}';",V.Caller.Terminal,V.DataTable.dtL1(V.Local.iCnt3).PART!FieldValTrim,V.DataTable.dtL1(V.Local.iCnt3).LOCATION!FieldValTrim,V.DataTable.dtL1(V.Local.iCnt3).LOT!FieldValTrim,V.DataTable.dtL1(V.Local.iCnt3).BIN!FieldValTrim,V.DataTable.dtL1(V.Local.iCnt3).HEAT!FieldValTrim,V.DataTable.dtL1(V.Local.iCnt3).SERIAL_NUMBER!FieldValTrim,V.DataTable.dtL1(V.Local.iCnt3).SEQUENCE!FieldValTrim,V.DataTable.dtL1(V.Local.iCnt3).JOB!FieldValTrim,V.DataTable.dtL1(V.Local.iCnt3).SUFFIX!FieldValTrim,V.Local.sSQL)
+									F.Data.DataTable.CreateFromSQL("dtChk","con",V.Local.sSQL,True)
+									F.Intrinsic.Control.If(V.DataTable.dtChk.RowCount,=,0)
+										F.Intrinsic.String.Build("SELECT * FROM Gab_5738_Lot_Lbhs WHERE TERMINAL = '{0}';",V.Caller.Terminal,V.Local.sSql)
+										F.Data.DataTable.CreateFromSQL("dtSave","con",V.Local.sSQL,True)
+										F.Data.DataTable.AddRow("dtSave","Terminal",V.Caller.Terminal,"ID",V.Local.iID,"PART",V.DataTable.dtL1(V.Local.iCnt3).PART!FieldValTrim,"LOCATION",V.DataTable.dtL1(V.Local.iCnt3).LOCATION!FieldValTrim,"LOT",V.DataTable.dtL1(V.Local.iCnt3).LOT!FieldValTrim,"BIN",V.DataTable.dtL1(V.Local.iCnt3).BIN!FieldValTrim,"HEAT",V.DataTable.dtL1(V.Local.iCnt3).HEAT!FieldValTrim,"SERIAL",V.DataTable.dtL1(V.Local.iCnt3).SERIAL_NUMBER!FieldValTrim,"JOB",V.DataTable.dtL1(V.Local.iCnt3).JOB!FieldValTrim,"SUFFIX",V.DataTable.dtL1(V.Local.iCnt3).SUFFIX!FieldValTrim,"CODE_TRANSACTION",V.DataTable.dtL1(V.Local.iCnt3).CODE_TRANSACTION!FieldValTrim,"SEQUENCE",V.DataTable.dtL1(V.Local.iCnt3).SEQUENCE!FieldValTrim,"ORDER_REC",V.Local.sOrderRec,"CHK","N")
+										F.Data.DataTable.SaveToDB("dtSave","con","Gab_5738_Lot_Lbhs","Terminal*!*ID")
+										F.Data.DataTable.Close("dtSave")
+										F.Intrinsic.Math.Add(V.Local.iID,1,V.Local.iID)
+									F.Intrinsic.Control.EndIf
+									F.Data.DataTable.Close("dtChk")
+								F.Intrinsic.Control.Next(V.Local.iCnt3)
+							F.Intrinsic.Control.EndIf
+							F.Data.DataTable.Close("dtL1")
+						F.Intrinsic.Control.EndIf
+					F.Intrinsic.Control.EndIf
+				F.Intrinsic.Control.EndIf
+				F.Data.DataTable.Close("dtLbhs")
+			F.Intrinsic.Control.Loop
+		F.Intrinsic.Control.Next(V.Local.iCnt)
+	F.Intrinsic.Control.EndIf
+	F.Data.DataTable.Close("dtShipLns")
+
+	F.Intrinsic.Control.CallSub(pullmainp)
+	F.Intrinsic.Control.CallSub(loadlot)
+	
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: GAB_5738_Mat_Cert_Info.g2u{0}{0}Subroutine: {1}{0}Error Occurred {2} with description {3}.",V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndTry
+Program.Sub.PullData.End
+
+Program.Sub.PullMainP.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+	
+	V.Local.sSQL.Declare
+	V.Local.iCnt.Declare
+	V.Local.sOrderRec.Declare
+	V.Local.sPart.Declare
+	V.Local.sLocation.Declare
+	V.Local.sLot.Declare
+	V.Local.sBin.Declare
+	V.Local.sHeat.Declare
+	V.Local.sSerial.Declare
+
+	F.Intrinsic.String.Build("Select PART, LOCATION, ORDER_REC from V_SHIPMENT_LINES Where ORDER_NO = '{0}' AND ORDER_SUFFIX = '{1}';",V.Global.sOrder,V.Global.sOrderSuffix,V.Local.sSQL)
+	F.Data.DataTable.CreateFromSQL("dtShipLns","con",V.Local.sSQL,True)
+
+	'Check Part
+	F.Intrinsic.Control.If(V.Global.sOption,=,"P")
+		F.Intrinsic.String.Build("Select PART from Gab_5738_Lot_Part Where PART = '{0}';",V.DataTable.dtShipLns(0).PART!FieldValTrim,V.Local.sSQL)
+		F.Data.DataTable.CreateFromSQL("dtPart","con",V.Local.sSQL,True)
+		F.Intrinsic.Control.If(V.DataTable.dtPart.RowCount,=,0)
+			F.Data.DataTable.Close("dtPart")
+			F.Intrinsic.Control.ExitSub
+		F.Intrinsic.Control.EndIf
+		F.Data.DataTable.Close("dtPart")
+	F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.Control.For(V.Local.iCnt,0,V.DataTable.dtShipLns.RowCount--,1)
+		V.Local.sPart.Set(V.DataTable.dtShipLns(V.Local.iCnt).PART!FieldValTrim)
+		V.Local.sLocation.Set(V.DataTable.dtShipLns(V.Local.iCnt).LOCATION!FieldValTrim)
+		V.Local.sOrderRec.Set(V.DataTable.dtShipLns(V.Local.iCnt).ORDER_REC!FieldValTrim)
+		F.Intrinsic.String.Build("Select LOT,BIN,HEAT,SERIAL from ORDER_HIST_LOT Where ORDER_NO = '{0}' AND ORDER_SUFFIX = '{1}' AND ORDER_LINE='{2}';",V.Global.sOrder,V.Global.sOrderSuffix,V.Local.sOrderRec,V.Local.sSQL)
+		F.Data.DataTable.CreateFromSQL("dtOrdHist","con",V.Local.sSQL,True)
+		F.Intrinsic.Control.If(V.DataTable.dtOrdHist.RowCount,<>,0)
+			V.Local.sLot.Set(V.DataTable.dtOrdHist(0).LOT!FieldValTrim)
+			V.Local.sBin.Set(V.DataTable.dtOrdHist(0).BIN!FieldValTrim)
+			V.Local.sHeat.Set(V.DataTable.dtOrdHist(0).HEAT!FieldValTrim)
+			V.Local.sSerial.Set(V.DataTable.dtOrdHist(0).SERIAL!FieldValTrim)
+		F.Intrinsic.Control.Else
+			V.Local.sLot.Set("")
+			V.Local.sBin.Set("")
+			V.Local.sHeat.Set("")
+			V.Local.sSerial.Set("")
+		F.Intrinsic.Control.EndIf
+		F.Data.DataTable.Close("dtOrdHist")
+
+		F.Intrinsic.String.Build("SELECT * FROM Gab_5738_Lot_Lbhs WHERE TERMINAL = '{0}' AND ORDER_REC = '{1}' AND PART = '{2}' AND LOCATION = '{3}' AND LOT = '{4}' AND BIN = '{5}' AND HEAT = '{6}' AND SERIAL = '{7}';",V.Caller.Terminal,V.Local.sOrderRec,V.Local.sPart,V.Local.sLocation,V.Local.sLot,V.Local.sBin,V.Local.sHeat,V.Local.sSerial,V.Local.sSQL)
+		F.Data.DataTable.CreateFromSQL("dtMain","con",V.Local.sSQL,True)
+		F.Intrinsic.Control.If(V.DataTable.dtMain.RowCount,=,0)
+			F.Data.DataTable.AddRow("dtMain","Terminal",V.Caller.Terminal,"ID",1,"PART",V.Local.sPart,"LOCATION",V.Local.sLocation,"LOT",V.Local.sLot,"BIN",V.Local.sBin,"HEAT",V.Local.sHeat,"SERIAL",V.Local.sSerial,"JOB","","SUFFIX","","CODE_TRANSACTION","MAN","SEQUENCE","999999","ORDER_REC",V.Local.sOrderRec,"CHK","Y")
+			F.Data.DataTable.SaveToDB("dtMain","con","Gab_5738_Lot_Lbhs","Terminal*!*ID*!*ORDER_REC*!*PART*!*LOCATION")
+		F.Intrinsic.Control.Else
+			F.Data.DataTable.SetValue("dtMain",-1,"ID",1)
+			F.Data.DataTable.SaveToDB("dtMain","con","Gab_5738_Lot_Lbhs","Terminal*!*ID*!*ORDER_REC*!*PART*!*LOCATION")
+		F.Intrinsic.Control.EndIf
+		F.Data.DataTable.Close("dtMain")
+	F.Intrinsic.Control.Next(V.Local.iCnt)
+	F.Data.DataTable.Close("dtShipLns")
+	
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: GAB_5738_Mat_Cert_Info.g2u{0}{0}Subroutine: {1}{0}Error Occurred {2} with description {3}.",V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndTry
+Program.Sub.PullMainP.End
+
+Program.Sub.LoadLot.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+	
+	V.Local.sSql.Declare
+	V.Local.iCnt.Declare
+	V.Local.iFlag.Declare
+	V.Local.sPart.Declare
+	V.Local.sLoc.Declare
+	V.Local.sLot.Declare
+	V.Local.sBin.Declare
+	V.Local.sHeat.Declare
+	V.Local.sSerial.Declare
+	V.Local.sOrderRec.Declare
+	V.Local.sJob.Declare
+	V.Local.sSuffix.Declare
+	V.Local.sSequence.Declare
+	V.Local.sPart2.Declare
+	V.Local.sLoc2.Declare
+	V.Local.sLot2.Declare
+	V.Local.sBin2.Declare
+	V.Local.sHeat2.Declare
+	V.Local.sSerial2.Declare
+	V.Local.sLinkID.Declare
+	V.Local.iLinkID.Declare
+	V.Local.sStat.Declare
+
+	F.Intrinsic.String.Build("DELETE from Gab_5738_Lot_Info Where PCK_NO = '{0}' AND ORDER_NO = '{1}' AND ORDER_SHIP_NO = '{2}';",V.Global.sPckNo,V.Global.sOrder,V.Global.sOrderSuffix,V.Local.sSql)
+	F.ODBC.Connection!con.Execute(V.Local.sSQL)
+	F.Intrinsic.String.Build("Select * from Gab_5738_Lot_Lbhs Where TERMINAL = '{0}';",V.Caller.Terminal,V.Local.sSql)
+	F.Data.DataTable.CreateFromSQL("dtLot","con",V.Local.sSql,True)
+'	F.Intrinsic.Control.If(V.DataTable.dtLot.RowCount,=,0)
+'		F.Intrinsic.UI.Msgbox("No records found.","Mat Cert Pack")
+'		F.Intrinsic.Control.End 
+'	F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.Control.For(V.Local.iCnt,0,V.DataTable.dtLot.RowCount--,1)
+		F.Intrinsic.Control.If(V.DataTable.dtLot(V.Local.iCnt).SEQUENCE!FieldValTrim,<,"999999")
+			V.Local.iFlag.Set(1)
+		F.Intrinsic.Control.ElseIf(V.DataTable.dtLot(V.Local.iCnt).ID!FieldValTrim,=,"1")
+			V.Local.iFlag.Set(1)
+		F.Intrinsic.Control.Else
+			V.Local.iFlag.Set(0)
+		F.Intrinsic.Control.EndIf
+
+		F.Intrinsic.Control.If(V.Local.iFlag,=,1)
+			V.Local.sPart.Set(V.DataTable.dtLot(V.Local.iCnt).PART!FieldValTrim)
+			V.Local.sLoc.Set(V.DataTable.dtLot(V.Local.iCnt).LOCATION!FieldValTrim)
+			V.Local.sLot.Set(V.DataTable.dtLot(V.Local.iCnt).LOT!FieldValTrim)
+			V.Local.sBin.Set(V.DataTable.dtLot(V.Local.iCnt).BIN!FieldValTrim)
+			V.Local.sHeat.Set(V.DataTable.dtLot(V.Local.iCnt).HEAT!FieldValTrim)
+			V.Local.sSerial.Set(V.DataTable.dtLot(V.Local.iCnt).SERIAL!FieldValTrim)
+			V.Local.sOrderRec.Set(V.DataTable.dtLot(V.Local.iCnt).ORDER_REC!FieldValTrim)
+			V.Local.sJob.Set(V.DataTable.dtLot(V.Local.iCnt).JOB!FieldValTrim)
+			V.Local.sSuffix.Set(V.DataTable.dtLot(V.Local.iCnt).SUFFIX!FieldValTrim)
+			V.Local.sSequence.Set(V.DataTable.dtLot(V.Local.iCnt).SEQUENCE!FieldValTrim)
+
+			F.Intrinsic.String.RPad(V.Local.sPart," ",20,V.Local.sPart2)
+			F.Intrinsic.String.RPad(V.Local.sLoc," ",2,V.Local.sLoc2)
+			F.Intrinsic.String.RPad(V.Local.sLot," ",15,V.Local.sLot2)
+			F.Intrinsic.String.RPad(V.Local.sBin," ",6,V.Local.sBin2)
+			F.Intrinsic.String.RPad(V.Local.sHeat," ",15,V.Local.sHeat2)
+			F.Intrinsic.String.RPad(V.Local.sSerial," ",30,V.Local.sSerial2)
+			F.Intrinsic.String.Build("{0}{1}{2}{3}{4}{5}",V.Local.sPart2,V.Local.sLoc2,V.Local.sLot2,V.Local.sBIN2,V.Local.sHeat2,V.Local.sSerial2,V.Local.sLinkID)
+			F.Global.DocumentControl.GetLinkID(V.Local.sLinkID,31,V.Local.iLinkID)
+			F.Intrinsic.String.Build("Select PATH,FILE from ATG_DOC_ASSOC Where LINK_ID = '{0}';",V.Local.iLinkID,V.Local.sSQL)
+			F.Data.DataTable.CreateFromSQL("dtLink","con",V.Local.sSql,True)
+			F.Intrinsic.Control.If(V.DataTable.dtLink.RowCount,<>,0)
+				V.Local.sStat.Set("1")
+			F.Intrinsic.Control.Else
+				V.Local.sStat.Set("")
+			F.Intrinsic.Control.EndIf
+			F.Data.DataTable.Close("dtLink")
+
+			V.Local.sSql.Set("SELECT * FROM Gab_5738_Lot_Info;")
+			F.Data.DataTable.CreateFromSQL("dtSaveLot","con",V.Local.sSql,True)
+			F.Data.DataTable.AddRow("dtSaveLot","PCK_NO",V.Global.sPckNo,"ORDER_NO",V.Global.sOrder,"ORDER_SHIP_NO",V.Global.sOrderSuffix,"ORDER_REC",V.Local.sOrderRec,"PART",V.Local.sPart,"LOC",V.Local.sLoc,"LOT",V.Local.sLot,"BIN",V.Local.sBin,"HEAT",V.Local.sHeat,"SERIAL",V.Local.sSerial,"JOB",V.Local.sJob,"SUFFIX",V.Local.sSuffix,"SEQUENCE",V.Local.sSequence,"STAT",V.Local.sStat)
+			F.Data.DataTable.SaveToDB("dtSaveLot","con","Gab_5738_Lot_Info","PCK_NO*!*ORDER_NO*!*ORDER_SHIP_NO*!*ORDER_REC*!*PART*!*LOT*!*BIN*!*HEAT*!*SERIAL*!*JOB*!*SUFFIX*!*LOC*!*SEQUENCE")
+			F.Data.DataTable.Close("dtSaveLot")
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.Next(V.Local.iCnt)
+	F.Data.DataTable.Close("dtLot")
+
+	F.Intrinsic.Control.CallSub(loadgv)
+	F.Intrinsic.Control.CallSub(addzip)
+'	F.Intrinsic.Control.CallSub(mergepdf)
+	
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: GAB_5738_Mat_Cert_Info.g2u{0}{0}Subroutine: {1}{0}Error Occurred {2} with description {3}.",V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndTry
+Program.Sub.LoadLot.End
+
+Program.Sub.AddZip.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+	
+	V.Local.sSql.Declare
+	V.Local.sPath.Declare
+	V.Local.iDocGrp.Declare
+	V.Local.sTargetFile.Declare
+	V.Local.bExists.Declare
+	V.Local.iCnt.Declare
+	V.Local.iCnt2.Declare
+	V.Local.sPart.Declare
+	V.Local.sLoc.Declare
+	V.Local.sLot.Declare
+	V.Local.sBin.Declare
+	V.Local.sHeat.Declare
+	V.Local.sSerial.Declare
+	V.Local.sIDLink.Declare
+	V.Local.iIDLink.Declare
+	V.Local.sPathLink.Declare	
+	V.Local.sSourceFile.Declare
+
+	F.Intrinsic.String.Build("{0}{1}{2}.zip",V.Global.sPckNo,V.Global.sOrder,V.Global.sOrderSuffix,V.Local.sTargetFile)
+
+	F.Intrinsic.Control.If(V.Global.sOption,=,"C")
+		F.Intrinsic.String.Build("Select CUSTOMER from V_SHIPMENT_HEADER Where ORDER_NO = '{0}' AND ORDER_SUFFIX = '{1}';",V.Global.sOrder,V.Global.sOrderSuffix,V.Local.sSQL)
+		F.Data.DataTable.CreateFromSQL("dtCust","con",V.Local.sSql,True)
+		F.Intrinsic.Control.If(V.DataTable.dtCust.RowCount,<>,0)
+			F.Intrinsic.String.Build("Select PATH From Gab_5738_Lot_Cust WHERE CUST = '{0}';",V.DataTable.dtCust(0).CUSTOMER!FieldValTrim,V.Local.sSQL)
+			F.Data.DataTable.CreateFromSQL("dtCustChk","con",V.Local.sSql,True)
+			F.Intrinsic.Control.If(V.DataTable.dtCustChk.RowCount,<>,0)
+				V.Local.sPath.Set(V.DataTable.dtCustChk(0).PATH!FieldValTrim)
+			F.Intrinsic.Control.EndIf
+
+			F.Intrinsic.Control.If(V.Local.sPath.Trim,=,"")
+				V.Local.sSQL.Set("Select PATH From Gab_5738_Lot_Cust WHERE CUST = '000000';")
+				F.Data.DataTable.CreateFromSQL("dtPath","con",V.Local.sSql,True)
+					F.Intrinsic.Control.If(V.DataTable.dtPath.RowCount,<>,0)
+						V.Local.sPath.Set(V.DataTable.dtPath(0).PATH!FieldValTrim)
+					F.Intrinsic.Control.EndIf
+				F.Data.DataTable.Close("dtPath")
+			F.Intrinsic.Control.EndIf
+
+			F.Intrinsic.Control.If(V.Local.sPath,=,"")
+				F.Intrinsic.UI.Msgbox("Target Path doesn't exist","Path Verification")
+			F.Intrinsic.Control.EndIf
+			F.Data.DataTable.Close("dtCustChk")
+			F.Data.DataTable.Close("dtCust")
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.ElseIf(V.Global.sOption,=,"P")
+		F.Data.DataTable.CreateFromSQL("dtPart","con","Select PATH From Gab_5738_Lot_Part WHERE PART = '000000';",True)
+		F.Intrinsic.Control.If(V.DataTable.dtPart.RowCount,<>,0)
+			V.Local.sPath.Set(V.DataTable.dtPart(0).PATH!FieldValTrim)
+		F.Intrinsic.Control.Else
+			V.Local.sPath.Set(V.Caller.FilesDir)
+		F.Intrinsic.Control.EndIf
+		F.Data.DataTable.Close("dtPart")
+
+		F.Intrinsic.Control.If(V.Local.sPath,=,"")
+			F.Intrinsic.UI.Msgbox("Target Path doesn't exist","Add Zip process")
+		F.Intrinsic.Control.EndIf
+
+		F.Data.DataTable.CreateFromSQL("dtPart2","con","Select PATH From Gab_5738_Lot_Part WHERE PART = '000000GR';",True)
+		F.Intrinsic.Control.If(V.DataTable.dtPart2.RowCount,<>,0)
+			V.Local.iDocGrp.Set(V.DataTable.dtPart2(0).PATH!FieldValTrim)
+		F.Intrinsic.Control.EndIf
+		F.Data.DataTable.Close("dtPart2")
+	F.Intrinsic.Control.Else
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.String.Build("{0}\{1}",V.Local.sPath,V.Local.sTargetFile,V.Local.sTargetFile)
+	F.Intrinsic.Control.If(V.Local.sPath,<>,"")
+		F.Intrinsic.File.Exists(V.Local.sTargetFile,V.Local.bExists)
+		F.Intrinsic.Control.If(V.Local.bExists)
+			F.Intrinsic.File.DeleteFile(V.Local.sTargetFile)
+		F.Intrinsic.Control.EndIf
+	
+		F.Intrinsic.Control.For(V.Local.iCnt,0,V.DataTable.dtLotEdit.RowCount--,1)
+			F.Intrinsic.Control.If(V.DataTable.dtLotEdit(V.Local.iCnt).SEL!FieldVal)
+				V.Local.sPart.Set("")
+				V.Local.sLoc.Set("")
+				V.Local.sLot.Set("")
+				V.Local.sBin.Set("")
+				V.Local.sHeat.Set("")
+				V.Local.sSerial.Set("")
+				F.Intrinsic.String.RPad(V.DataTable.dtLotEdit(V.Local.iCnt).PART!FieldValTrim," ",20,V.Local.sPart)
+				F.Intrinsic.String.RPad(V.DataTable.dtLotEdit(V.Local.iCnt).LOC!FieldValTrim," ",2,V.Local.sLoc)
+				F.Intrinsic.String.RPad(V.DataTable.dtLotEdit(V.Local.iCnt).LOT!FieldValTrim," ",15,V.Local.sLot)
+				F.Intrinsic.String.RPad(V.DataTable.dtLotEdit(V.Local.iCnt).BIN!FieldValTrim," ",6,V.Local.sBin)
+				F.Intrinsic.String.RPad(V.DataTable.dtLotEdit(V.Local.iCnt).HEAT!FieldValTrim," ",15,V.Local.sHeat)
+				F.Intrinsic.String.RPad(V.DataTable.dtLotEdit(V.Local.iCnt).SERIAL!FieldValTrim," ",30,V.Local.sSerial)
+				F.Intrinsic.String.Build("{0}{1}{2}{3}{4}{5}",V.Local.sPart,V.Local.sLoc,V.Local.sLot,V.Local.sBin,V.Local.sHeat,V.Local.sSerial,V.Local.sIDlink)
+				F.Global.DocumentControl.GetLinkID(V.Local.sIDLink,31,V.Local.iIDLink)
+				F.Intrinsic.String.Build("Select PATH,FILE from ATG_DOC_ASSOC Where LINK_ID = '{0}';",V.Local.iIDLink,V.Local.sSQL)
+				F.Data.DataTable.CreateFromSQL("dtLink","con",V.Local.sSql,True)
+				F.Intrinsic.Control.For(V.Local.iCnt2,0,V.DataTable.dtLink.RowCount--,1)
+					F.Intrinsic.String.Build("{0}{1}",V.DataTable.dtLink(V.Local.iCnt2).PATH!FieldValTrim,V.DataTable.dtLink(V.Local.iCnt2).FILE!FieldValTrim,V.Local.sSourceFile)
+					F.Automation.Zip.Zip(V.Local.sSourceFile,V.Local.sTargetFile)
+				F.Intrinsic.Control.Next(V.Local.iCnt2)
+				F.Data.DataTable.Close("dtLink")
+			F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.Next(V.Local.iCnt)
+	
+		F.Global.DocumentControl.GetLinkID(V.Global.sOrder,45,V.Local.iIDLink)
+		F.Intrinsic.Control.If(V.Local.iIDLink,<,1)
+			F.Global.DocumentControl.CreateReference(V.Global.sOrder,45,V.Local.iIDLink)
+		F.Intrinsic.Control.EndIf
+		F.Global.DocumentControl.AddDocument(V.Local.iIDLink,V.Local.sTargetFile,"Mat Cert Packet",1,"ZIP")
+	F.Intrinsic.Control.EndIf
+	
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: GAB_5738_Mat_Cert_Info.g2u{0}{0}Subroutine: {1}{0}Error Occurred {2} with description {3}.",V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndTry
+Program.Sub.AddZip.End
+
+Program.Sub.MergePDF.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+	
+	V.Local.sSql.Declare
+	V.Local.sPath.Declare
+	v.Local.sfilepathSO.Declare
+	v.Local.sfilepathTEMP.Declare
+	V.Local.sTempPath.Declare
+	V.Local.iDocGrp.Declare
+	V.Local.sTargetFile.Declare
+	V.Local.bExists.Declare
+	V.Local.iCnt.Declare
+	V.Local.iCnt2.Declare
+	V.Local.iCnt3.Declare
+	V.Local.iCnt4.Declare
+	V.Local.sPart.Declare
+	V.Local.iYposition.Declare
+	V.Local.sLoc.Declare
+	V.Local.sLot.Declare
+	V.Local.sBin.Declare
+	V.Local.sHeat.Declare
+	V.Local.sSerial.Declare
+	V.Local.sIDLink.Declare
+	V.Local.iIDLink.Declare
+	V.Local.i1.Declare
+	v.Local.iPage.Declare
+	v.Local.iTotalPage.Declare
+	V.Local.sPathLink.Declare	
+	V.Local.sSourceFile.Declare
+	v.Local.sfilepath.Declare
+	v.Local.sSourcepathTemp.Declare
+	v.Local.sText.Declare
+	v.Local.sText1.Declare
+	v.Local.sText2.Declare
+	v.Local.sText3.Declare
+	v.Local.sText4.Declare		
+	v.Local.sReplace.Declare
+	v.Local.sMessage.Declare
+	V.Local.sExternalID.Declare
+	
+	F.Intrinsic.UI.InvokeWaitDialog("Please Wait...")
+
+	F.Intrinsic.String.Build("{0}{1}{2}.pdf",V.Global.sPckNo,V.Global.sOrder,V.Global.sOrderSuffix,V.Local.sTargetFile)
+
+	F.Intrinsic.Control.If(V.Global.sOption,=,"C")
+		F.Intrinsic.String.Build("Select CUSTOMER from V_SHIPMENT_HEADER Where ORDER_NO = '{0}' AND ORDER_SUFFIX = '{1}';",V.Global.sOrder,V.Global.sOrderSuffix,V.Local.sSQL)
+		F.Data.DataTable.CreateFromSQL("dtCust","con",V.Local.sSql,True)
+		F.Intrinsic.Control.If(V.DataTable.dtCust.RowCount,<>,0)
+			F.Intrinsic.String.Build("Select PATH From Gab_5738_Lot_Cust WHERE CUST = '{0}';",V.DataTable.dtCust(0).CUSTOMER!FieldValTrim,V.Local.sSQL)
+			F.Data.DataTable.CreateFromSQL("dtCustChk","con",V.Local.sSql,True)
+			F.Intrinsic.Control.If(V.DataTable.dtCustChk.RowCount,<>,0)
+				V.Local.sPath.Set(V.DataTable.dtCustChk(0).PATH!FieldValTrim)
+			F.Intrinsic.Control.EndIf
+
+			F.Intrinsic.Control.If(V.Local.sPath.Trim,=,"")
+				V.Local.sSQL.Set("Select PATH From Gab_5738_Lot_Cust WHERE CUST = '000000';")
+				F.Data.DataTable.CreateFromSQL("dtPath","con",V.Local.sSql,True)
+					F.Intrinsic.Control.If(V.DataTable.dtPath.RowCount,<>,0)
+						V.Local.sPath.Set(V.DataTable.dtPath(0).PATH!FieldValTrim)
+					F.Intrinsic.Control.EndIf
+				F.Data.DataTable.Close("dtPath")
+			F.Intrinsic.Control.EndIf
+
+			F.Intrinsic.Control.If(V.Local.sPath,=,"")
+				F.Intrinsic.UI.Msgbox("Target Path doesn't exist","Path Verification")
+			F.Intrinsic.Control.EndIf
+			F.Data.DataTable.Close("dtCustChk")
+			F.Data.DataTable.Close("dtCust")
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.ElseIf(V.Global.sOption,=,"P")
+		F.Data.DataTable.CreateFromSQL("dtPart","con","Select PATH From Gab_5738_Lot_Part WHERE PART = '000000';",True)
+		F.Intrinsic.Control.If(V.DataTable.dtPart.RowCount,<>,0)
+			V.Local.sPath.Set(V.DataTable.dtPart(0).PATH!FieldValTrim)
+		F.Intrinsic.Control.Else
+			V.Local.sPath.Set(V.Caller.FilesDir)
+		F.Intrinsic.Control.EndIf
+		F.Data.DataTable.Close("dtPart")
+
+		F.Intrinsic.Control.If(V.Local.sPath,=,"")
+			F.Intrinsic.UI.Msgbox("Target Path doesn't exist","Add Zip process")
+		F.Intrinsic.Control.EndIf
+
+		F.Data.DataTable.CreateFromSQL("dtPart2","con","Select PATH From Gab_5738_Lot_Part WHERE PART = '000000GR';",True)
+		F.Intrinsic.Control.If(V.DataTable.dtPart2.RowCount,<>,0)
+			V.Local.iDocGrp.Set(V.DataTable.dtPart2(0).PATH!FieldValTrim)
+		F.Intrinsic.Control.EndIf
+		F.Data.DataTable.Close("dtPart2")
+	F.Intrinsic.Control.Else
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.String.Build("{0}\{1}",V.Local.sPath,V.Local.sTargetFile,V.Local.sTargetFile)
+	F.Intrinsic.Control.If(V.Local.sPath,<>,"")
+		F.Intrinsic.File.Exists(V.Local.sTargetFile,V.Local.bExists)
+		F.Intrinsic.Control.If(V.Local.bExists)
+			F.Intrinsic.File.DeleteFile(V.Local.sTargetFile)
+		F.Intrinsic.Control.EndIf
+		
+		F.Intrinsic.String.Build("{0}GAB_5738_WATERMARK_TEMP",V.Caller.LocalGSSTempDir,V.Global.sTempPath)	
+		F.Intrinsic.File.CreateDir(V.Global.sTempPath)
+		
+		F.Intrinsic.String.Build("Select External_ID From V_CUST_FORM_INFO Where CUSTOMER = '{0}';",V.Global.sCust,V.Local.sSQL)
+		F.ODBC.Connection!con.ExecuteAndReturn(V.Local.sSQL,V.Local.sExternalID)
+	
+		F.Intrinsic.Control.For(V.Local.iCnt,0,V.DataTable.dtLotEdit.RowCount--,1)
+			F.Intrinsic.Control.If(V.DataTable.dtLotEdit(V.Local.iCnt).SEL!FieldVal,=,True)
+				V.Local.sPart.Set("")
+				V.Local.sLoc.Set("")
+				V.Local.sLot.Set("")
+				V.Local.sBin.Set("")
+				V.Local.sHeat.Set("")
+				V.Local.sSerial.Set("")
+				F.Intrinsic.String.RPad(V.DataTable.dtLotEdit(V.Local.iCnt).PART!FieldValTrim," ",20,V.Local.sPart)
+				F.Intrinsic.String.RPad(V.DataTable.dtLotEdit(V.Local.iCnt).LOC!FieldValTrim," ",2,V.Local.sLoc)
+				F.Intrinsic.String.RPad(V.DataTable.dtLotEdit(V.Local.iCnt).LOT!FieldValTrim," ",15,V.Local.sLot)
+				F.Intrinsic.String.RPad(V.DataTable.dtLotEdit(V.Local.iCnt).BIN!FieldValTrim," ",6,V.Local.sBin)
+				F.Intrinsic.String.RPad(V.DataTable.dtLotEdit(V.Local.iCnt).HEAT!FieldValTrim," ",15,V.Local.sHeat)
+				F.Intrinsic.String.RPad(V.DataTable.dtLotEdit(V.Local.iCnt).SERIAL!FieldValTrim," ",30,V.Local.sSerial)
+				F.Intrinsic.String.Build("{0}{1}{2}{3}{4}{5}",V.Local.sPart,V.Local.sLoc,V.Local.sLot,V.Local.sBin,V.Local.sHeat,V.Local.sSerial,V.Local.sIDlink)
+				F.Global.DocumentControl.GetLinkID(V.Local.sIDLink,31,V.Local.iIDLink)
+				
+'				V.Local.sText1.Set("SHAMROCK PRECISION")
+				F.Intrinsic.String.Build("PO NO. : {0}",V.Global.sCustPO,v.Local.sText2)
+				F.Intrinsic.String.Build("BATCH : {0}{1}",V.Local.sExternalID.Trim,V.Local.sLot,v.Local.sText3)
+				F.Intrinsic.String.Build("P/N : {0}",V.Local.sPart,v.Local.sText4)
+				F.Intrinsic.String.Build("{0}  {1}  {2}",v.Local.sText2,v.Local.sText3,v.Local.sText4,v.Local.sText)
+				
+
+				F.Intrinsic.String.Build("Select PATH,FILE from ATG_DOC_ASSOC Where LINK_ID = '{0}' AND FILE_TYPE = 'PDF';",V.Local.iIDLink,V.Local.sSQL)
+				F.Data.DataTable.CreateFromSQL("dtLink","con",V.Local.sSql,True)
+
+				F.Intrinsic.Control.For(V.Local.iCnt2,0,V.DataTable.dtLink.RowCount--,1)
+				F.Intrinsic.Control.If(V.DataTable.dtLink(V.Local.iCnt2).PATH!FieldValTrim,<>,"")
+				F.Intrinsic.Control.If(V.Local.iCnt2,=,0)
+					F.Intrinsic.String.Build("{0}\{1}",V.DataTable.dtLink(V.Local.iCnt2).PATH!FieldValTrim,V.DataTable.dtLink(V.Local.iCnt2).FILE!FieldValTrim,v.Local.sfilepath)
+					F.Intrinsic.String.Build("{0}\{1}",V.Global.sTempPath,V.DataTable.dtLink(V.Local.iCnt2).FILE!FieldValTrim,v.Local.sfilepathTemp)
+					f.Automation.PDF.Open("MatCert",v.Local.sfilepath)
+					f.Automation.PDF.GetPageCount("MatCert",v.Local.iTotalPage)
+					f.Automation.PDF.Close("MatCert")
+					F.Intrinsic.Control.For(V.Local.iCnt4,1,v.Local.iTotalPage,1)
+					F.Intrinsic.Math.Add(V.Local.iCnt4,0,V.Local.iPage)
+						F.Intrinsic.String.Build("{0}.pdf",V.Local.iCnt4,v.Local.sReplace)
+						F.Intrinsic.String.Replace(v.Local.sfilepathTemp,".pdf",v.Local.sReplace,v.Local.sfilepathTemp)
+						f.Automation.PDF.Addtext(v.Local.sfilepath,v.Local.sfilepathTEMP,v.Local.sText,V.Local.iPage,15,200,90,"ARIAL",8,"BLUE")
+'						F.Intrinsic.Debug.ShowCallerInfo
+						v.Local.sfilepath.Set(v.Local.sfilepathTEMP)
+					F.Intrinsic.Control.Next(V.Local.iCnt4)						
+				F.Intrinsic.Control.Else
+					F.Intrinsic.Math.Add(V.Local.iCnt4,0,V.Local.iPage)
+						F.Intrinsic.String.Build("{0}.pdf",V.Local.iCnt4,v.Local.sReplace)
+						F.Intrinsic.String.Replace(v.Local.sfilepathTemp,".pdf",v.Local.sReplace,v.Local.sfilepathTemp)
+						f.Automation.PDF.Addtext(v.Local.sfilepath,v.Local.sfilepathTEMP,v.Local.sText,V.Local.iPage,15,200,90,"ARIAL",8,"BLUE")
+						V.Local.sSourceFile.Set(v.Local.sSourcepathTemp)
+				F.Intrinsic.Control.Next(V.Local.iCnt4)					
+					F.Intrinsic.String.Concat(V.Local.sSourceFile,"*!*",v.Local.sfilepath,v.Local.sfilepath)				
+				F.Intrinsic.Control.EndIf
+				F.Intrinsic.Control.Next(V.Local.iCnt2)
+				F.Data.DataTable.Close("dtLink")
+
+'				F.Intrinsic.Control.For(V.Local.iCnt2,0,V.DataTable.dtLink.RowCount--,1)
+'				F.Intrinsic.Control.If(V.DataTable.dtLink(V.Local.iCnt2).PATH!FieldValTrim,<>,"")
+'				F.Intrinsic.Control.If(V.Local.iCnt2,=,0)
+'					F.Intrinsic.String.Build("{0}\{1}",V.DataTable.dtLink(V.Local.iCnt2).PATH!FieldValTrim,V.DataTable.dtLink(V.Local.iCnt2).FILE!FieldValTrim,v.Local.sfilepath)
+'					F.Intrinsic.String.Build("{0}\{1}",V.Global.sTempPath,V.DataTable.dtLink(V.Local.iCnt2).FILE!FieldValTrim,v.Local.sfilepathTemp)
+'					f.Automation.PDF.Open("MatCert",v.Local.sfilepath)
+'					f.Automation.PDF.GetPageCount("MatCert",v.Local.iTotalPage)
+'					f.Automation.PDF.Close("MatCert")
+'					F.Intrinsic.Control.For(V.Local.iCnt4,1,v.Local.iTotalPage,1)
+'					F.Intrinsic.Math.Add(V.Local.iCnt4,0,V.Local.iPage)
+'						F.Intrinsic.String.Build("{0}.pdf",V.Local.iCnt4,v.Local.sReplace)
+'						F.Intrinsic.String.Replace(v.Local.sfilepathTemp,".pdf",v.Local.sReplace,v.Local.sfilepathTemp)
+'						F.Intrinsic.Control.For(V.Local.iCnt3,0,4,1)
+'						F.Intrinsic.Control.If(V.Local.iCnt3,=,0)	
+'						V.Local.iYposition.Set(100)
+'							F.Intrinsic.String.Build("{0}.pdf",V.Local.iCnt3,v.Local.sReplace)
+'							F.Intrinsic.String.Replace(v.Local.sfilepathTemp,".pdf",v.Local.sReplace,v.Local.sfilepathTemp)						
+'							V.Local.sText.Set("SHAMROCK PRECISION")									
+''							F.Intrinsic.Debug.ShowCallerInfo
+'							f.Automation.PDF.Addtext(v.Local.sfilepath,v.Local.sfilepathTEMP,v.Local.sText,v.Local.iPage,250,V.Local.iYposition,0,"ARIAL",8,"BLUE")
+'						F.Intrinsic.Control.ElseIf(V.Local.iCnt3,=,1)
+'						v.Local.sfilepath.Set(v.Local.sfilepathTEMP)					
+'							F.Intrinsic.Math.Sub(V.Local.iYposition,15,V.Local.iYposition)
+'							F.Intrinsic.String.Build("{0}.pdf",V.Local.iCnt3,v.Local.sReplace)
+'							F.Intrinsic.String.Replace(v.Local.sfilepathTemp,".pdf",v.Local.sReplace,v.Local.sfilepathTemp)
+'							F.Intrinsic.String.Build("PO NO.   : {0}",V.Global.sCustPO,v.Local.sText)
+''							F.Intrinsic.Debug.ShowCallerInfo
+'							f.Automation.PDF.Addtext(v.Local.sfilepath,v.Local.sfilepathTEMP,v.Local.sText,v.Local.iPage,250,V.Local.iYposition,0,"ARIAL",8,"BLUE")
+'						F.Intrinsic.Control.ElseIf(V.Local.iCnt3,=,2)
+'						v.Local.sfilepath.Set(v.Local.sfilepathTEMP)					
+'							F.Intrinsic.Math.Sub(V.Local.iYposition,15,V.Local.iYposition)
+'							F.Intrinsic.String.Build("{0}.pdf",V.Local.iCnt3,v.Local.sReplace)
+'							F.Intrinsic.String.Replace(v.Local.sfilepathTemp,".pdf",v.Local.sReplace,v.Local.sfilepathTemp)
+'							F.Intrinsic.String.Build("BATCH   : {0}",V.Local.sLot,v.Local.sText)
+''							F.Intrinsic.Debug.ShowCallerInfo
+'							f.Automation.PDF.Addtext(v.Local.sfilepath,v.Local.sfilepathTEMP,v.Local.sText,v.Local.iPage,250,V.Local.iYposition,0,"ARIAL",8,"BLUE")
+'						F.Intrinsic.Control.ElseIf(V.Local.iCnt3,=,3)
+'						v.Local.sfilepath.Set(v.Local.sfilepathTEMP)					
+'							F.Intrinsic.Math.Sub(V.Local.iYposition,15,V.Local.iYposition)
+'							F.Intrinsic.String.Build("{0}.pdf",V.Local.iCnt3,v.Local.sReplace)
+'							F.Intrinsic.String.Replace(v.Local.sfilepathTemp,".pdf",v.Local.sReplace,v.Local.sfilepathTemp)
+'							F.Intrinsic.String.Build("P/N         : {0}",V.Local.sPart,v.Local.sText)
+''							F.Intrinsic.Debug.ShowCallerInfo
+'							f.Automation.PDF.Addtext(v.Local.sfilepath,v.Local.sfilepathTEMP,v.Local.sText,V.Local.iPage,250,V.Local.iYposition,0,"ARIAL",8,"BLUE")												
+'						F.Intrinsic.Control.EndIf
+'						v.Local.sfilepath.Set(v.Local.sfilepathTEMP)
+'						F.Intrinsic.Control.Next(V.Local.iCnt3)
+'					F.Intrinsic.Control.Next(V.Local.iCnt4)						
+'				F.Intrinsic.Control.Else
+'					F.Intrinsic.String.Build("{0}\{1}",V.DataTable.dtLink(V.Local.iCnt2).PATH!FieldValTrim,V.DataTable.dtLink(V.Local.iCnt2).FILE!FieldValTrim,V.Local.sSourceFile)
+'					F.Intrinsic.String.Build("{0}\{1}",V.Global.sTempPath,V.DataTable.dtLink(V.Local.iCnt2).FILE!FieldValTrim,v.Local.sSourcepathTemp)
+'					f.Automation.PDF.Open("MatCert",v.Local.sfilepath)
+'					f.Automation.PDF.GetPageCount("MatCert",v.Local.iTotalPage)
+'					f.Automation.PDF.Close("MatCert")				
+'					F.Intrinsic.Control.For(V.Local.iCnt4,1,v.Local.iTotalPage,1)
+'					F.Intrinsic.Math.Add(V.Local.iCnt4,0,V.Local.iPage)					
+'					F.Intrinsic.String.Build("{0}.pdf",V.Local.iCnt4,v.Local.sReplace)
+'					F.Intrinsic.String.Replace(v.Local.sfilepathTemp,".pdf",v.Local.sReplace,v.Local.sfilepathTemp)
+'					F.Intrinsic.Control.For(V.Local.iCnt3,0,4,1)
+'					F.Intrinsic.Control.If(V.Local.iCnt3,=,0)	
+'					V.Local.iYposition.Set(100)									
+'						V.Local.sText.Set("SHAMROCK PRECISION")
+''							F.Intrinsic.Debug.ShowCallerInfo						
+'						f.Automation.PDF.Addtext(v.Local.sfilepath,v.Local.sfilepathTEMP,v.Local.sText,V.Local.iPage,250,V.Local.iYposition,0,"ARIAL",8,"BLUE")
+'					F.Intrinsic.Control.ElseIf(V.Local.iCnt3,=,1)
+'					v.Local.sfilepath.Set(v.Local.sfilepathTEMP)					
+'						F.Intrinsic.Math.Sub(V.Local.iYposition,15,V.Local.iYposition)
+'						F.Intrinsic.String.Build("{0}.pdf",V.Local.iCnt3,v.Local.sReplace)
+'						F.Intrinsic.String.Replace(v.Local.sfilepathTemp,".pdf",v.Local.sReplace,v.Local.sfilepathTemp)
+'						F.Intrinsic.String.Build("PO NO.   : {0}",V.Global.sCustPO,v.Local.sText)
+'						f.Automation.PDF.Addtext(v.Local.sfilepath,v.Local.sfilepathTEMP,v.Local.sText,V.Local.iPage,250,V.Local.iYposition,0,"ARIAL",8,"BLUE")
+'					F.Intrinsic.Control.ElseIf(V.Local.iCnt3,=,2)
+'					v.Local.sfilepath.Set(v.Local.sfilepathTEMP)
+'						F.Intrinsic.Math.Sub(V.Local.iYposition,15,V.Local.iYposition)
+'						F.Intrinsic.String.Build("{0}.pdf",V.Local.iCnt3,v.Local.sReplace)
+'						F.Intrinsic.String.Replace(v.Local.sfilepathTemp,".pdf",v.Local.sReplace,v.Local.sfilepathTemp)
+'						F.Intrinsic.String.Build("BATCH   : {0}",V.Local.sLot,v.Local.sText)
+'						f.Automation.PDF.Addtext(v.Local.sfilepath,v.Local.sfilepathTEMP,v.Local.sText,V.Local.iPage,250,V.Local.iYposition,0,"ARIAL",8,"BLUE")
+'					F.Intrinsic.Control.ElseIf(V.Local.iCnt3,=,3)
+'					v.Local.sfilepath.Set(v.Local.sfilepathTEMP)					
+'						F.Intrinsic.Math.Sub(V.Local.iYposition,15,V.Local.iYposition)
+'						F.Intrinsic.String.Build("{0}.pdf",V.Local.iCnt3,v.Local.sReplace)
+'						F.Intrinsic.String.Replace(v.Local.sfilepathTemp,".pdf",v.Local.sReplace,v.Local.sfilepathTemp)
+'						F.Intrinsic.String.Build("P/N         : {0}",V.Local.sPart,v.Local.sText)
+'						f.Automation.PDF.Addtext(v.Local.sfilepath,v.Local.sfilepathTEMP,v.Local.sText,V.Local.iPage,250,V.Local.iYposition,0,"ARIAL",8,"BLUE")												
+'					F.Intrinsic.Control.EndIf
+'					V.Local.sSourceFile.Set(v.Local.sSourcepathTemp)
+'					F.Intrinsic.Control.Next(V.Local.iCnt3)
+'				F.Intrinsic.Control.Next(V.Local.iCnt4)					
+'					F.Intrinsic.String.Concat(V.Local.sSourceFile,"*!*",v.Local.sfilepath,v.Local.sfilepath)				
+'				F.Intrinsic.Control.EndIf
+'				F.Intrinsic.Control.Next(V.Local.iCnt2)
+'				F.Data.DataTable.Close("dtLink")
+				
+				F.Intrinsic.Control.If(v.Local.sfilepathSO.Trim,=,"")
+					v.Local.sfilepathSO.Set(v.Local.sfilepath)
+'					F.Automation.Zip.Zip(V.Local.sSourceFile,V.Local.sTargetFile)
+				F.Intrinsic.Control.Else
+					F.Intrinsic.String.Concat(v.Local.sfilepath,"*!*",v.Local.sfilepathSO,v.Local.sfilepathSO)				
+				F.Intrinsic.Control.EndIf
+				Function.Automation.PDF.Merge(v.Local.sfilepathSO,V.Local.sTargetFile)
+		F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.EndIf	
+		F.Intrinsic.Control.Next(V.Local.iCnt)		
+	
+		F.Global.DocumentControl.GetLinkID(V.Global.sOrder,45,V.Local.iIDLink)
+		F.Intrinsic.Control.If(V.Local.iIDLink,<,1)
+			F.Global.DocumentControl.CreateReference(V.Global.sOrder,45,V.Local.iIDLink)
+		F.Intrinsic.Control.EndIf
+		F.Global.DocumentControl.AddDocument(V.Local.iIDLink,V.Local.sTargetFile,"Mat Cert Packet",1,"PDF")
+	F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.UI.CloseWaitDialog
+	F.Intrinsic.String.Build("Merge PDF Done. File Was Saved To :{0}{1}",V.Ambient.NewLine,V.Local.sTargetFile,v.Local.sMessage)
+	F.Intrinsic.UI.Msgbox(v.Local.sMessage)
+		
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: GAB_5738_Mat_Cert_Info.g2u{0}{0}Subroutine: {1}{0}Error Occurred {2} with description {3}.",V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndTry
+Program.Sub.MergePDF.End
+
+Program.Sub.LoadGV.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+	
+	V.Local.sSql.Declare
+	V.Local.sIcon.Declare
+	V.Local.sGssLogo.Declare
+
+	F.Intrinsic.String.Build("{0}\gss2.ico",V.Caller.GasDir,v.Local.sIcon)
+	F.Intrinsic.String.Build("{0}\GAB_GSS_Logo_Green_Dash.png",V.Caller.GasDir,V.Local.sGssLogo)
+	Gui.frmCertEdit..Icon(V.Local.sIcon)
+	Gui.frmCertEdit.picGSSLogo.Picture(V.Local.sGssLogo)
+	Gui.frmCertEdit.txtPck.Text(V.Global.sPckNo)
+	Gui.frmCertEdit.txtOrderNo.Text(V.Global.sOrder)
+	Gui.frmCertEdit.txtShipNo.Text(V.Global.sOrderSuffix)
+
+	F.Intrinsic.String.Build("Select Cast(CASE WHEN Stat = '1' THEN '1' WHEN Stat = 'D' THEN '1' ELSE '' END as Bit) AS SEL, LEFT(ORDER_REC,3) AS ORDER_REC, PART, LOC, RTrim(LOT) As LOT, BIN, HEAT, SERIAL, JOB, SUFFIX,SEQUENCE,Cast(0 as Bit) as DCC,CASE WHEN Stat = '1' THEN 'Print' ELSE '' END AS STAT FROM Gab_5738_Lot_Info WHERE PCK_NO = '{0}' AND ORDER_NO = '{1}' AND ORDER_SHIP_NO = '{2}' Order By ORDER_REC, PART, LOC;",V.Global.sPckNo,V.Global.sOrder,V.Global.sOrderSuffix,V.Local.sSql)
+	F.Data.DataTable.CreateFromSQL("dtLotEdit","con",V.Local.sSql,True)
+
+	F.Intrinsic.Control.CallSub(dccfill)
+
+'	F.Intrinsic.Control.If(V.Caller.Hook,<>,28532)
+		Gui.frmCertEdit..Show
+
+		Gui.frmCertEdit.GsGCEdit.AddGridviewFromDatatable("gvLotEdit","dtLotEdit")
+		Gui.frmCertEdit.GsGCEdit.MainView("gvLotEdit")
+		Gui.frmCertEdit.GsGCEdit.SuspendLayout()
+		Gui.frmCertEdit.GsGCEdit.SetGridViewProperty("gvLotEdit","MultiSelect",True)
+		Gui.frmCertEdit.GsGCEdit.SetGridViewProperty("gvLotEdit","AllowSort",True)
+		Gui.frmCertEdit.GsGCEdit.SetGridViewProperty("gvLotEdit","AllowFilter",True)
+		Gui.frmCertEdit.GsGCEdit.SetGridViewProperty("gvLotEdit","OptionsDetailShowDetailTabs",False)
+		Gui.frmCertEdit.GsGCEdit.SetGridViewProperty("gvLotEdit","OptionsViewShowGroupPanel",True)
+		Gui.frmCertEdit.GsGCEdit.SetGridViewProperty("gvLotEdit","EnableAppearanceOddRow",True)
+
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","SEL","Caption","Print")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","ORDER_REC","Caption","Record")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","PART","Caption","Part")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","LOC","Caption","Loc")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","LOT","Caption","Lot")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","BIN","Caption","Bin")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","HEAT","Caption","Heat")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","SERIAL","Caption","Serial")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","JOB","Caption","Job")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","SUFFIX","Caption","Suffix")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","SEQUENCE","Caption","Sequence")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","DCC","Caption","DCC")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","STAT","Caption","Status")
+
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","SEL","MinWidth","30")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","ORDER_REC","MinWidth","55")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","PART","MinWidth","150")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","LOC","MinWidth","55")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","LOT","MinWidth","85")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","BIN","MinWidth","85")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","HEAT","MinWidth","100")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","SERIAL","MinWidth","100")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","JOB","MinWidth","55")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","SUFFIX","MinWidth","35")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","SEQUENCE","MinWidth","55")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","DCC","MinWidth","45")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","STAT","MinWidth","55")
+
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","SEL","AllowEdit",False)
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","ORDER_REC","AllowEdit",False)
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","PART","AllowEdit",False)
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","LOC","AllowEdit",False)
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","LOT","AllowEdit",False)
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","BIN","AllowEdit",False)
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","HEAT","AllowEdit",False)
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","SERIAL","AllowEdit",False)
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","JOB","AllowEdit",False)
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","SUFFIX","AllowEdit",False)
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","SEQUENCE","AllowEdit",False)
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","DCC","AllowEdit",False)
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","STAT","AllowEdit",False)
+
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","SEL","HeaderHAlignment","Center")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","ORDER_REC","HeaderHAlignment","Center")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","LOC","HeaderHAlignment","Center")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","LOT","HeaderHAlignment","Center")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","BIN","HeaderHAlignment","Center")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","HEAT","HeaderHAlignment","Center")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","SERIAL","HeaderHAlignment","Center")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","JOB","HeaderHAlignment","Center")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","SUFFIX","HeaderHAlignment","Center")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","SEQUENCE","HeaderHAlignment","Center")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","DCC","HeaderHAlignment","Center")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","STAT","HeaderHAlignment","Center")
+
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","SEL","CellHAlignment","Center")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","ORDER_REC","CellHAlignment","Center")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","LOC","CellHAlignment","Center")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","LOT","CellHAlignment","Center")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","BIN","CellHAlignment","Center")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","HEAT","CellHAlignment","Center")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","SERIAL","CellHAlignment","Center")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","JOB","CellHAlignment","Center")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","SUFFIX","CellHAlignment","Center")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","SEQUENCE","CellHAlignment","Center")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","DCC","CellHAlignment","Center")
+		Gui.frmCertEdit.GsGCEdit.SetColumnProperty("gvLotEdit","STAT","CellHAlignment","Center")
+		
+		Gui.frmCertEdit.GsGCEdit.ResumeLayout()
+'	F.Intrinsic.Control.EndIf
+	
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: GAB_5738_Mat_Cert_Info.g2u{0}{0}Subroutine: {1}{0}Error Occurred {2} with description {3}.",V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndTry
+Program.Sub.LoadGV.End
+
+Program.Sub.DCCFill.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+	
+	V.Local.iCnt.Declare
+	V.Local.sSql.Declare
+	V.Local.sPart.Declare
+	V.Local.sLoc.Declare
+	V.Local.sLot.Declare
+	V.Local.sBin.Declare
+	V.Local.sHeat.Declare
+	V.Local.sSerial.Declare
+	V.Local.sIDLink.Declare
+	V.Local.iIDLink.Declare
+
+	F.Intrinsic.Control.For(V.Local.iCnt,0,V.DataTable.dtLotEdit.RowCount--,1)
+		V.Local.sPart.Set("")
+		V.Local.sLoc.Set("")
+		V.Local.sLot.Set("")
+		V.Local.sBin.Set("")
+		V.Local.sHeat.Set("")
+		V.Local.sSerial.Set("")
+		F.Intrinsic.String.RPad(V.DataTable.dtLotEdit(V.Local.iCnt).PART!FieldValTrim," ",20,V.Local.sPart)
+		F.Intrinsic.String.RPad(V.DataTable.dtLotEdit(V.Local.iCnt).LOC!FieldValTrim," ",2,V.Local.sLoc)
+		F.Intrinsic.String.RPad(V.DataTable.dtLotEdit(V.Local.iCnt).LOT!FieldValTrim," ",15,V.Local.sLot)
+		F.Intrinsic.String.RPad(V.DataTable.dtLotEdit(V.Local.iCnt).BIN!FieldValTrim," ",6,V.Local.sBin)
+		F.Intrinsic.String.RPad(V.DataTable.dtLotEdit(V.Local.iCnt).HEAT!FieldValTrim," ",15,V.Local.sHEAT)
+		F.Intrinsic.String.RPad(V.DataTable.dtLotEdit(V.Local.iCnt).SERIAL!FieldValTrim," ",30,V.Local.sSerial)
+		F.Intrinsic.String.Build("{0}{1}{2}{3}{4}{5}",V.Local.sPart,V.Local.sLoc,V.Local.sLot,V.Local.sBIN,V.Local.sHeat,V.Local.sSerial,V.Local.sIDlink)
+		F.Global.DocumentControl.GetLinkID(V.Local.sIDLink,31,V.Local.iIDLink)
+		F.Intrinsic.String.Build("Select PATH,FILE from ATG_DOC_ASSOC Where LINK_ID='{0}'",V.Local.iIDLink,V.Local.sSQL)
+		F.Data.DataTable.CreateFromSQL("dtLink","con",V.Local.sSql,True)
+		F.Intrinsic.Control.If(V.DataTable.dtLink.RowCount,<>,0)
+			F.Data.DataTable.SetValue("dtLotEdit",V.Local.iCnt,"DCC",True)
+		F.Intrinsic.Control.EndIf
+		F.Data.DataTable.Close("dtLink")
+	F.Intrinsic.Control.Next(V.Local.iCnt)
+	
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: GAB_5738_Mat_Cert_Info.g2u{0}{0}Subroutine: {1}{0}Error Occurred {2} with description {3}.",V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndTry
+Program.Sub.DCCFill.End
+
+Program.Sub.GsGCEdit_RowCellClick.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+	
+	V.Local.sSql.Declare
+	V.Local.bPrint.Declare
+	V.Local.sRecord.Declare
+	V.Local.sPart.Declare
+	V.Local.sLoc.Declare
+	V.Local.sLot.Declare
+	V.Local.sBin.Declare
+	V.Local.sHeat.Declare
+	V.Local.sSerial.Declare
+	V.Local.sJob.Declare
+	V.Local.sSuffix.Declare
+	V.Local.sSeq.Declare
+	
+	F.Intrinsic.Control.If(V.Args.Column,=,"SEL")
+		Gui.frmCertEdit.GsGCEdit.GetCellValueByColumnName("gvLotEdit","SEL",V.Args.RowIndex,V.Local.bPrint)
+		Gui.frmCertEdit.GsGCEdit.GetCellValueByColumnName("gvLotEdit","ORDER_REC",V.Args.RowIndex,V.Local.sRecord)
+		F.Intrinsic.String.RPAD(V.Local.sRecord,"0",4,V.Local.sRecord)
+		Gui.frmCertEdit.GsGCEdit.GetCellValueByColumnName("gvLotEdit","PART",V.Args.RowIndex,V.Local.sPart)
+		Gui.frmCertEdit.GsGCEdit.GetCellValueByColumnName("gvLotEdit","LOC",V.Args.RowIndex,V.Local.sLoc)
+		Gui.frmCertEdit.GsGCEdit.GetCellValueByColumnName("gvLotEdit","LOT",V.Args.RowIndex,V.Local.sLot)
+		Gui.frmCertEdit.GsGCEdit.GetCellValueByColumnName("gvLotEdit","BIN",V.Args.RowIndex,V.Local.sBin)
+		Gui.frmCertEdit.GsGCEdit.GetCellValueByColumnName("gvLotEdit","HEAT",V.Args.RowIndex,V.Local.sHeat)
+		Gui.frmCertEdit.GsGCEdit.GetCellValueByColumnName("gvLotEdit","SERIAL",V.Args.RowIndex,V.Local.sSerial)
+		Gui.frmCertEdit.GsGCEdit.GetCellValueByColumnName("gvLotEdit","JOB",V.Args.RowIndex,V.Local.sJob)
+		Gui.frmCertEdit.GsGCEdit.GetCellValueByColumnName("gvLotEdit","SUFFIX",V.Args.RowIndex,V.Local.sSuffix)
+		Gui.frmCertEdit.GsGCEdit.GetCellValueByColumnName("gvLotEdit","SEQUENCE",V.Args.RowIndex,V.Local.sSeq)
+	
+		F.Intrinsic.String.Build("SELECT * FROM Gab_5738_Lot_Info Where PCK_NO = '{0}' AND ORDER_NO = '{1}' AND ORDER_SHIP_NO = '{2}' AND ORDER_REC = '{3}' AND PART = '{4}' AND LOC = '{5}' AND LOT = '{6}' AND BIN = '{7}' AND HEAT = '{8}' AND SERIAL = '{9}' AND JOB = '{10}' AND SUFFIX = '{11}' AND SEQUENCE = '{12}';",V.Global.sPckNo,V.Global.sOrder,V.Global.sOrderSuffix,V.Local.sRecord,V.Local.sPart,V.Local.sLoc,V.Local.sLot,V.Local.sBin,V.Local.sHeat,V.Local.sSerial,V.Local.sJob,V.Local.sSuffix,V.Local.sSeq,V.Local.sSql)
+		F.Data.DataTable.CreateFromSQL("dtStat","con",V.Local.sSql,True)
+		F.Intrinsic.Control.If(V.DataTable.dtStat.RowCount,<>,0)
+			F.Intrinsic.Control.If(V.Local.bPrint,=,False)
+				F.Data.DataTable.SetValue("dtStat",-1,"STAT",1)
+				Gui.frmCertEdit.GsGCEdit.SetCellValueByColumnName("gvLotEdit","SEL",V.Args.RowIndex,True)
+				Gui.frmCertEdit.GsGCEdit.SetCellValueByColumnName("gvLotEdit","STAT",V.Args.RowIndex,"Print")
+			F.Intrinsic.Control.Else
+				F.Data.DataTable.SetValue("dtStat",-1,"STAT","")
+				Gui.frmCertEdit.GsGCEdit.SetCellValueByColumnName("gvLotEdit","SEL",V.Args.RowIndex,False)
+				Gui.frmCertEdit.GsGCEdit.SetCellValueByColumnName("gvLotEdit","STAT",V.Args.RowIndex,"")
+			F.Intrinsic.Control.EndIf
+			F.Data.DataTable.SaveToDB("dtStat","con","Gab_5738_Lot_Info","PCK_NO*!*ORDER_NO*!*ORDER_SHIP_NO*!*ORDER_REC*!*PART*!*LOT*!*BIN*!*HEAT*!*SERIAL*!*JOB*!*SUFFIX*!*LOC*!*SEQUENCE")
+		F.Intrinsic.Control.EndIf
+		F.Data.DataTable.Close("dtStat")
+	F.Intrinsic.Control.EndIf
+	
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: GAB_5738_Mat_Cert_Info.g2u{0}{0}Subroutine: {1}{0}Error Occurred {2} with description {3}.",V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndTry
+Program.Sub.GsGCEdit_RowCellClick.End
+
+Program.Sub.cmdRefresh_Click.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+	
+	F.Data.DataTable.Close("dtLotEdit")
+	F.Intrinsic.Control.CallSub(pulldata)
+	
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: GAB_5738_Mat_Cert_Info.g2u{0}{0}Subroutine: {1}{0}Error Occurred {2} with description {3}.",V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndTry
+Program.Sub.cmdRefresh_Click.End
+
+Program.Sub.cmdOpen_Click.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+	
+	V.Local.iCnt.Declare
+	V.Local.iCnt2.Declare
+	V.Local.sPart.Declare
+	V.Local.sLoc.Declare
+	V.Local.sLot.Declare
+	V.Local.sBin.Declare
+	V.Local.sHeat.Declare
+	V.Local.sSerial.Declare
+	V.Local.sIDLink.Declare
+	V.Local.iIDLink.Declare
+	V.Local.sSql.Declare
+	V.Local.sPath.Declare
+	V.Local.sFile.Declare
+
+	F.Intrinsic.Control.For(V.Local.iCnt,0,V.DataTable.dtLotEdit.RowCount--,1)
+		Gui.frmCertEdit.cmdOpen.Enabled(False)
+		Gui.frmCertEdit.cmdPrint.Enabled(False)
+		Gui.frmCertEdit.cmdRefresh.Enabled(False)
+		F.Intrinsic.Control.If(V.DataTable.dtLotEdit(V.Local.iCnt).SEL!FieldVal)
+			V.Local.sPart.Set("")
+			V.Local.sLoc.Set("")
+			V.Local.sLot.Set("")
+			V.Local.sBin.Set("")
+			V.Local.sHeat.Set("")
+			V.Local.sSerial.Set("")
+			F.Intrinsic.String.RPad(V.DataTable.dtLotEdit(V.Local.iCnt).PART!FieldValTrim," ",20,V.Local.sPart)
+			F.Intrinsic.String.RPad(V.DataTable.dtLotEdit(V.Local.iCnt).LOC!FieldValTrim," ",2,V.Local.sLoc)
+			F.Intrinsic.String.RPad(V.DataTable.dtLotEdit(V.Local.iCnt).LOT!FieldValTrim," ",15,V.Local.sLot)
+			F.Intrinsic.String.RPad(V.DataTable.dtLotEdit(V.Local.iCnt).BIN!FieldValTrim," ",6,V.Local.sBin)
+			F.Intrinsic.String.RPad(V.DataTable.dtLotEdit(V.Local.iCnt).HEAT!FieldValTrim," ",15,V.Local.sHeat)
+			F.Intrinsic.String.RPad(V.DataTable.dtLotEdit(V.Local.iCnt).SERIAL!FieldValTrim," ",30,V.Local.sSerial)
+			F.Intrinsic.String.Build("{0}{1}{2}{3}{4}{5}",V.Local.sPart,V.Local.sLoc,V.Local.sLot,V.Local.sBin,V.Local.sHeat,V.Local.sSerial,V.Local.sIDlink)
+			F.Global.DocumentControl.GetLinkID(V.Local.sIDLink,31,V.Local.iIDLink)
+			F.Intrinsic.String.Build("Select PATH,FILE from ATG_DOC_ASSOC Where LINK_ID = '{0}';",V.Local.iIDLink,V.Local.sSQL)
+			F.Data.DataTable.CreateFromSQL("dtLink","con",V.Local.sSql,True)
+			F.Intrinsic.Control.For(V.Local.iCnt2,0,V.DataTable.dtLink.RowCount--,1)
+				F.Intrinsic.String.Build("{0}{1}",V.DataTable.dtLink(V.Local.iCnt2).PATH!FieldValTrim,V.DataTable.dtLink(V.Local.iCnt2).FILE!FieldValTrim,V.Local.sFile)
+				F.Intrinsic.task.ShellExec(V.Caller.Handle,"OPEN",V.local.sFile,"","",5)
+				F.Intrinsic.UI.Sleep(1)
+			F.Intrinsic.Control.Next(V.Local.iCnt2)
+			F.Data.DataTable.Close("dtLink")
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.Next(V.Local.iCnt)
+	F.Intrinsic.Control.CallSub(addzip)
+'	F.Intrinsic.Control.CallSub(mergepdf)
+	
+	Gui.frmCertEdit.cmdOpen.Enabled(True)
+	Gui.frmCertEdit.cmdPrint.Enabled(True)
+	Gui.frmCertEdit.cmdRefresh.Enabled(True)
+	
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: GAB_5738_Mat_Cert_Info.g2u{0}{0}Subroutine: {1}{0}Error Occurred {2} with description {3}.",V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+'		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndTry
+Program.Sub.cmdOpen_Click.End
+
+Program.Sub.cmdPrint_Click.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+	
+	V.Local.iCnt.Declare
+	V.Local.iCnt2.Declare
+	V.Local.sPart.Declare
+	V.Local.sLoc.Declare
+	V.Local.sLot.Declare
+	V.Local.sBin.Declare
+	V.Local.sHeat.Declare
+	V.Local.sSerial.Declare
+	V.Local.sIDLink.Declare
+	V.Local.iIDLink.Declare
+	V.Local.sSql.Declare
+	V.Local.sPath.Declare
+	V.Local.sFile.Declare
+
+	F.Intrinsic.Control.For(V.Local.iCnt,0,V.DataTable.dtLotEdit.RowCount--,1)
+		Gui.frmCertEdit.cmdOpen.Enabled(False)
+		Gui.frmCertEdit.cmdPrint.Enabled(False)
+		Gui.frmCertEdit.cmdRefresh.Enabled(False)
+		F.Intrinsic.Control.If(V.DataTable.dtLotEdit(V.Local.iCnt).SEL!FieldVal)
+			V.Local.sPart.Set("")
+			V.Local.sLoc.Set("")
+			V.Local.sLot.Set("")
+			V.Local.sBin.Set("")
+			V.Local.sHeat.Set("")
+			V.Local.sSerial.Set("")
+			F.Intrinsic.String.RPad(V.DataTable.dtLotEdit(V.Local.iCnt).PART!FieldValTrim," ",20,V.Local.sPart)
+			F.Intrinsic.String.RPad(V.DataTable.dtLotEdit(V.Local.iCnt).LOC!FieldValTrim," ",2,V.Local.sLoc)
+			F.Intrinsic.String.RPad(V.DataTable.dtLotEdit(V.Local.iCnt).LOT!FieldValTrim," ",15,V.Local.sLot)
+			F.Intrinsic.String.RPad(V.DataTable.dtLotEdit(V.Local.iCnt).BIN!FieldValTrim," ",6,V.Local.sBin)
+			F.Intrinsic.String.RPad(V.DataTable.dtLotEdit(V.Local.iCnt).HEAT!FieldValTrim," ",15,V.Local.sHeat)
+			F.Intrinsic.String.RPad(V.DataTable.dtLotEdit(V.Local.iCnt).SERIAL!FieldValTrim," ",30,V.Local.sSerial)
+			F.Intrinsic.String.Build("{0}{1}{2}{3}{4}{5}",V.Local.sPart,V.Local.sLoc,V.Local.sLot,V.Local.sBin,V.Local.sHeat,V.Local.sSerial,V.Local.sIDlink)
+			F.Global.DocumentControl.GetLinkID(V.Local.sIDLink,31,V.Local.iIDLink)
+			F.Intrinsic.String.Build("Select PATH,FILE from ATG_DOC_ASSOC Where LINK_ID = '{0}';",V.Local.iIDLink,V.Local.sSQL)
+			F.Data.DataTable.CreateFromSQL("dtLink","con",V.Local.sSql,True)
+			F.Intrinsic.Control.For(V.Local.iCnt2,0,V.DataTable.dtLink.RowCount--,1)
+				F.Intrinsic.String.Build("{0}{1}",V.DataTable.dtLink(V.Local.iCnt2).PATH!FieldValTrim,V.DataTable.dtLink(V.Local.iCnt2).FILE!FieldValTrim,V.Local.sFile)
+				F.Intrinsic.task.ShellExec(V.Caller.Handle,"PRINT",V.local.sFile,"","",5)
+				F.Intrinsic.UI.Sleep(1)
+			F.Intrinsic.Control.Next(V.Local.iCnt2)
+			F.Data.DataTable.Close("dtLink")
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.Next(V.Local.iCnt)
+	F.Intrinsic.Control.CallSub(addzip)
+'	F.Intrinsic.Control.CallSub(mergepdf)
+	
+	Gui.frmCertEdit.cmdOpen.Enabled(True)
+	Gui.frmCertEdit.cmdPrint.Enabled(True)
+	Gui.frmCertEdit.cmdRefresh.Enabled(True)
+	
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: GAB_5738_Mat_Cert_Info.g2u{0}{0}Subroutine: {1}{0}Error Occurred {2} with description {3}.",V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+'		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndTry
+Program.Sub.cmdPrint_Click.End
+
+Program.Sub.cmdOpenZip_Click.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+	
+	V.Local.sSql.Declare
+	V.Local.sPath.Declare
+	V.Local.iDocGrp.Declare
+	V.Local.sTargetFile.Declare
+	V.Local.bExists.Declare
+	V.Local.iCnt.Declare
+	V.Local.iCnt2.Declare
+	V.Local.sPart.Declare
+	V.Local.sLoc.Declare
+	V.Local.sLot.Declare
+	V.Local.sBin.Declare
+	V.Local.sHeat.Declare
+	V.Local.sSerial.Declare
+	V.Local.sIDLink.Declare
+	V.Local.iIDLink.Declare
+	V.Local.sPathLink.Declare	
+	V.Local.sSourceFile.Declare
+
+	F.Intrinsic.String.Build("{0}{1}{2}.zip",V.Global.sPckNo,V.Global.sOrder,V.Global.sOrderSuffix,V.Local.sTargetFile)
+
+	F.Intrinsic.Control.If(V.Global.sOption,=,"C")
+		F.Intrinsic.String.Build("Select CUSTOMER from V_SHIPMENT_HEADER Where ORDER_NO = '{0}' AND ORDER_SUFFIX = '{1}';",V.Global.sOrder,V.Global.sOrderSuffix,V.Local.sSQL)
+		F.Data.DataTable.CreateFromSQL("dtCust","con",V.Local.sSql,True)
+		F.Intrinsic.Control.If(V.DataTable.dtCust.RowCount,<>,0)
+			F.Intrinsic.String.Build("Select PATH From Gab_5738_Lot_Cust WHERE CUST = '{0}';",V.DataTable.dtCust(0).CUSTOMER!FieldValTrim,V.Local.sSQL)
+			F.Data.DataTable.CreateFromSQL("dtCustChk","con",V.Local.sSql,True)
+			F.Intrinsic.Control.If(V.DataTable.dtCustChk.RowCount,<>,0)
+				V.Local.sPath.Set(V.DataTable.dtCustChk(0).PATH!FieldValTrim)
+			F.Intrinsic.Control.EndIf
+
+			F.Intrinsic.Control.If(V.Local.sPath.Trim,=,"")
+				V.Local.sSQL.Set("Select PATH From Gab_5738_Lot_Cust WHERE CUST = '000000';")
+				F.Data.DataTable.CreateFromSQL("dtPath","con",V.Local.sSql,True)
+					F.Intrinsic.Control.If(V.DataTable.dtPath.RowCount,<>,0)
+						V.Local.sPath.Set(V.DataTable.dtPath(0).PATH!FieldValTrim)
+					F.Intrinsic.Control.EndIf
+				F.Data.DataTable.Close("dtPath")
+			F.Intrinsic.Control.EndIf
+
+			F.Intrinsic.Control.If(V.Local.sPath,=,"")
+				F.Intrinsic.UI.Msgbox("Target Path doesn't exist","Path Verification")
+			F.Intrinsic.Control.EndIf
+			F.Data.DataTable.Close("dtCustChk")
+			F.Data.DataTable.Close("dtCust")
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.ElseIf(V.Global.sOption,=,"P")
+		F.Data.DataTable.CreateFromSQL("dtPart","con","Select PATH From Gab_5738_Lot_Part WHERE PART = '000000';",True)
+		F.Intrinsic.Control.If(V.DataTable.dtPart.RowCount,<>,0)
+			V.Local.sPath.Set(V.DataTable.dtPart(0).PATH!FieldValTrim)
+		F.Intrinsic.Control.Else
+			V.Local.sPath.Set(V.Caller.FilesDir)
+		F.Intrinsic.Control.EndIf
+		F.Data.DataTable.Close("dtPart")
+
+		F.Intrinsic.Control.If(V.Local.sPath,=,"")
+			F.Intrinsic.UI.Msgbox("Target Path doesn't exist","Add Zip process")
+		F.Intrinsic.Control.EndIf
+
+		F.Data.DataTable.CreateFromSQL("dtPart2","con","Select PATH From Gab_5738_Lot_Part WHERE PART = '000000GR';",True)
+		F.Intrinsic.Control.If(V.DataTable.dtPart2.RowCount,<>,0)
+			V.Local.iDocGrp.Set(V.DataTable.dtPart2(0).PATH!FieldValTrim)
+		F.Intrinsic.Control.EndIf
+		F.Data.DataTable.Close("dtPart2")
+	F.Intrinsic.Control.Else
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.String.Build("{0}\{1}",V.Local.sPath,V.Local.sTargetFile,V.Local.sTargetFile)
+	F.Intrinsic.Control.If(V.Local.sPath,<>,"")
+		F.Intrinsic.File.Exists(V.Local.sTargetFile,V.Local.bExists)
+		F.Intrinsic.Control.If(V.Local.bExists)
+			F.Intrinsic.task.ShellExec(V.Caller.Handle,"OPEN",V.local.sTargetFile,"","",5)
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.EndIf
+	
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: GAB_5738_Mat_Cert_Info.g2u{0}{0}Subroutine: {1}{0}Error Occurred {2} with description {3}.",V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndTry
+Program.Sub.cmdOpenZip_Click.End
+
+Program.Sub.cmdOpenMergePDF_Click.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+	
+	V.Local.sSql.Declare
+	V.Local.sPath.Declare
+	V.Local.iDocGrp.Declare
+	V.Local.sTargetFile.Declare
+	V.Local.bExists.Declare
+	V.Local.iCnt.Declare
+	V.Local.iCnt2.Declare
+	V.Local.sPart.Declare
+	V.Local.sLoc.Declare
+	V.Local.sLot.Declare
+	V.Local.sBin.Declare
+	V.Local.sHeat.Declare
+	V.Local.sSerial.Declare
+	V.Local.sIDLink.Declare
+	V.Local.iIDLink.Declare
+	V.Local.sPathLink.Declare	
+	V.Local.sSourceFile.Declare
+
+	F.Intrinsic.String.Build("{0}{1}{2}.pdf",V.Global.sPckNo,V.Global.sOrder,V.Global.sOrderSuffix,V.Local.sTargetFile)
+
+	F.Intrinsic.Control.If(V.Global.sOption,=,"C")
+		F.Intrinsic.String.Build("Select CUSTOMER from V_SHIPMENT_HEADER Where ORDER_NO = '{0}' AND ORDER_SUFFIX = '{1}';",V.Global.sOrder,V.Global.sOrderSuffix,V.Local.sSQL)
+		F.Data.DataTable.CreateFromSQL("dtCust","con",V.Local.sSql,True)
+		F.Intrinsic.Control.If(V.DataTable.dtCust.RowCount,<>,0)
+			F.Intrinsic.String.Build("Select PATH From Gab_5738_Lot_Cust WHERE CUST = '{0}';",V.DataTable.dtCust(0).CUSTOMER!FieldValTrim,V.Local.sSQL)
+			F.Data.DataTable.CreateFromSQL("dtCustChk","con",V.Local.sSql,True)
+			F.Intrinsic.Control.If(V.DataTable.dtCustChk.RowCount,<>,0)
+				V.Local.sPath.Set(V.DataTable.dtCustChk(0).PATH!FieldValTrim)
+			F.Intrinsic.Control.EndIf
+
+			F.Intrinsic.Control.If(V.Local.sPath.Trim,=,"")
+				V.Local.sSQL.Set("Select PATH From Gab_5738_Lot_Cust WHERE CUST = '000000';")
+				F.Data.DataTable.CreateFromSQL("dtPath","con",V.Local.sSql,True)
+					F.Intrinsic.Control.If(V.DataTable.dtPath.RowCount,<>,0)
+						V.Local.sPath.Set(V.DataTable.dtPath(0).PATH!FieldValTrim)
+					F.Intrinsic.Control.EndIf
+				F.Data.DataTable.Close("dtPath")
+			F.Intrinsic.Control.EndIf
+
+			F.Intrinsic.Control.If(V.Local.sPath,=,"")
+				F.Intrinsic.UI.Msgbox("Target Path doesn't exist","Path Verification")
+			F.Intrinsic.Control.EndIf
+			F.Data.DataTable.Close("dtCustChk")
+			F.Data.DataTable.Close("dtCust")
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.ElseIf(V.Global.sOption,=,"P")
+		F.Data.DataTable.CreateFromSQL("dtPart","con","Select PATH From Gab_5738_Lot_Part WHERE PART = '000000';",True)
+		F.Intrinsic.Control.If(V.DataTable.dtPart.RowCount,<>,0)
+			V.Local.sPath.Set(V.DataTable.dtPart(0).PATH!FieldValTrim)
+		F.Intrinsic.Control.Else
+			V.Local.sPath.Set(V.Caller.FilesDir)
+		F.Intrinsic.Control.EndIf
+		F.Data.DataTable.Close("dtPart")
+
+		F.Intrinsic.Control.If(V.Local.sPath,=,"")
+			F.Intrinsic.UI.Msgbox("Target Path doesn't exist","Add Zip process")
+		F.Intrinsic.Control.EndIf
+
+		F.Data.DataTable.CreateFromSQL("dtPart2","con","Select PATH From Gab_5738_Lot_Part WHERE PART = '000000GR';",True)
+		F.Intrinsic.Control.If(V.DataTable.dtPart2.RowCount,<>,0)
+			V.Local.iDocGrp.Set(V.DataTable.dtPart2(0).PATH!FieldValTrim)
+		F.Intrinsic.Control.EndIf
+		F.Data.DataTable.Close("dtPart2")
+	F.Intrinsic.Control.Else
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.String.Build("{0}\{1}",V.Local.sPath,V.Local.sTargetFile,V.Local.sTargetFile)
+	F.Intrinsic.Control.If(V.Local.sPath,<>,"")
+		F.Intrinsic.File.Exists(V.Local.sTargetFile,V.Local.bExists)
+		F.Intrinsic.Control.If(V.Local.bExists)
+			F.Intrinsic.task.ShellExec(V.Caller.Handle,"OPEN",V.local.sTargetFile,"","",5)
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.EndIf
+	
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: GAB_5738_Mat_Cert_Info.g2u{0}{0}Subroutine: {1}{0}Error Occurred {2} with description {3}.",V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndTry
+Program.Sub.cmdOpenMergePDF_Click.End
+
+Program.Sub.Comments.Start
+${$0$}$Material Cert W/ Merge PDF$}$DYUNUS$}$10/28/2019 4:31:42 PM$}$False
+${$5$}$2.0.0.0$}$2
+${$6$}$dyunus$}$20201103102613946$}$xZ6SHi8g7O0Qsxe6AiO2NH3PnOKQRy0T94W6wyYpJhGSAZlslWp2Pxpd6L8Vk6dO84RcGJ4jUZ0=
+Program.Sub.Comments.End
